@@ -1,0 +1,29 @@
+{
+  "name": "luscher-test",
+  "version": "1.0.0",
+  "description": "Lüscher color test",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/temoncher/luscher-test.git"
+  },
+  "keywords": [
+    "luscher",
+    "color",
+    "test"
+  ],
+  "author": "temoncher@yandex.ru",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/temoncher/luscher-test/issues"
+  },
+  "homepage": "https://github.com/temoncher/luscher-test#readme",
+  "devDependencies": {
+    "typescript": "^3.9.7"
+  }
+}
