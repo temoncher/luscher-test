@@ -1,7 +1,7 @@
-import { QuickTestColors } from "@/constants/colors.enum";
+import { QuickTestColors } from '@/constants/colors.enum';
 
 export class QuickLuscherTest {
-    firstStage: QuickTestColors[];
+    firstStage: QuickTestColors[] = [];
 
     setFirstStage(colors: QuickTestColors[]) {
       if (colors.length !== 8) {
@@ -9,5 +9,7 @@ export class QuickLuscherTest {
       }
 
       this.firstStage = [...colors];
+
+      console.log(this.firstStage);
     }
 }

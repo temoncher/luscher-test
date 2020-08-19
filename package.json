@@ -5,8 +5,9 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "start": "tsc --watch",
-    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "nodemon src/index.ts",
+    "build": "tsc -p .",
     "prepublish": "tsc"
   },
   "repository": {
@@ -31,5 +32,14 @@
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.0",
     "typescript": "^3.9.7"
+  },
+  "dependencies": {
+    "@types/node": "^14.6.0",
+    "module-alias": "^2.2.2",
+    "nodemon": "^2.0.4",
+    "ts-node": "^8.10.2"
+  },
+  "_moduleAliases": {
+    "@": "src"
   }
 }
