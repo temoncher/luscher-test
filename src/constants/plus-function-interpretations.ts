@@ -1,6 +1,7 @@
 /* eslint-disable quote-props */
 import { PsyFunction } from '../models/psy-function.interface';
 
+// TODO: add title
 export const plusFunctions: { [key: string]: PsyFunction } = {
   '0': {
     asterisks: 1,
