@@ -4,6 +4,9 @@ import { Sign } from './sign.enum';
 
 export const interpretations = {
   [Sign.PLUS]: plusFunctions,
+  [Sign.ASTERISK]: plusFunctions,
+  [Sign.EQUAL]: plusFunctions,
+  [Sign.MINUS]: plusFunctions,
 };
 
 // Get interpretation : interpretations[Sign.PLUS][`${firstColor}${secondColor}`]

@@ -3,5 +3,6 @@ export enum Sign {
   MINUS ='-',
   EQUAL = '=',
   ASTERISK = '*',
-  PLUS_MINUS = '+-'
 }
+
+export type SignKey = Sign.PLUS | Sign.MINUS | Sign.EQUAL | Sign.ASTERISK

@@ -3,6 +3,6 @@ import { PsyFunction } from './psy-function.interface';
 
 export interface InterpretationSection {
   title: string;
-  interpretation: PsyFunction;
+  interpretation: [PsyFunction, PsyFunction?];
   sign: Sign;
 }
