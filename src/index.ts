@@ -1,9 +1,6 @@
-// eslint-disable-next-line import/extensions
 import 'module-alias/register';
-import { QuickLuscherTest } from '@/quick-test/quick-luscher-test';
+import { SingleStageTest } from '@/single-stage-test/single-stage-test';
 
-console.log('Hello world');
+const newTest = new SingleStageTest([1, 2, 4, 5, 7, 6, 0, 3]);
 
-const newTest = new QuickLuscherTest();
-
-newTest.setFirstStage([1, 2, 4, 5, 7, 6, 0, 3]);
+console.log(newTest.result);
