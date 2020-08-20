@@ -2,6 +2,7 @@
 import { plusFunctions } from './plus-function-interpretations';
 import { Sign } from './sign.enum';
 
+// TODO: finish interpretations
 export const interpretations = {
   [Sign.PLUS]: plusFunctions,
   [Sign.ASTERISK]: plusFunctions,
