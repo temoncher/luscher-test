@@ -1,10 +1,9 @@
-import { MainColor } from './main-color.enum';
+// eslint-disable-next-line import/extensions
+import { plusFunctions } from './plus-function-interpretations';
+import { Sign } from './sign.enum';
 
-interface PsyFunction {
-    asterisks: 1|2|3;
-    ru: string;
-    eng: string;
-    percentage?: number;
-}
+export const interpretations = {
+  [Sign.PLUS]: plusFunctions,
+};
 
-export const plusFunctions: { [key: string]: PsyFunction } = {};
+// Get interpretation : interpretations[Sign.PLUS][`${firstColor}${secondColor}`]

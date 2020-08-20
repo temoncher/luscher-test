@@ -1,5 +1,5 @@
 import { MainColor } from '@/constants/main-color.enum';
-import { ColorResult } from '@/model/color-result.interface';
+import { ColorResult } from '@/models/color-result.interface';
 import { Sign } from '@/constants/sign.enum';
 
 export class SingleStageTest {

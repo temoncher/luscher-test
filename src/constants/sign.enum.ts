@@ -3,4 +3,5 @@ export enum Sign {
   MINUS ='-',
   EQUAL = '=',
   ASTERISK = '*',
+  PLUS_MINUS = '+-'
 }
