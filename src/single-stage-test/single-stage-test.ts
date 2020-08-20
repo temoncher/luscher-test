@@ -1,12 +1,15 @@
 import { MainColor } from '@/constants/main-color.enum';
 import { ColorResult } from '@/models/color-result.interface';
 import { Sign } from '@/constants/sign.enum';
+import { strict } from 'assert';
+import { ColorGroups } from '@/models/color-groups.interface';
 
 export class SingleStageTest {
-    private colorResults: ColorResult[] = [];
-
-    get result() {
-      return [...this.colorResults];
+    private colorGroups: ColorGroups = {
+      [Sign.PLUS]: [],
+      [Sign.ASTERISK]: [],
+      [Sign.EQUAL]: [],
+      [Sign.MINUS]: [],
     }
 
     constructor(colors: MainColor[]) {
@@ -14,35 +17,34 @@ export class SingleStageTest {
         throw new Error('You shold pass an array of 8 colors, no more, no less');
       }
 
-      this.calculateColorResults(colors);
+      this.getGroups(colors);
     }
 
-    private calculateColorResults(colors: MainColor[]) {
-      this.colorResults = colors.map((color, index): ColorResult => {
+    getResult() {
+      return { ...this.colorGroups };
+    }
+
+    private getGroups(colors: MainColor[]) {
+      colors.forEach((color, index) => {
         switch (index) {
         case 0:
         case 1:
-          return {
-            color,
-            signs: [Sign.PLUS],
-          };
+          this.colorGroups[Sign.PLUS].push(color);
+          break;
+
         case 2:
         case 3:
-          return {
-            color,
-            signs: [Sign.ASTERISK],
-          };
+          this.colorGroups[Sign.ASTERISK].push(color);
+          break;
+
         case 4:
         case 5:
-          return {
-            color,
-            signs: [Sign.EQUAL],
-          };
+          this.colorGroups[Sign.EQUAL].push(color);
+          break;
+
         default:
-          return {
-            color,
-            signs: [Sign.MINUS],
-          };
+          this.colorGroups[Sign.MINUS].push(color);
+          break;
         }
       });
     }
