@@ -1,6 +1,6 @@
-import { MainColor } from '@/constants/main-color.enum';
-import { Sign } from '@/constants/sign.enum';
-import { EmotionalState } from '@/constants/emotional-state.enum';
+import { MainColor } from '../constants/main-color.enum';
+import { Sign } from '../constants/sign.enum';
+import { EmotionalState } from '../constants/emotional-state.enum';
 
 export interface ColorResult {
   color: MainColor;

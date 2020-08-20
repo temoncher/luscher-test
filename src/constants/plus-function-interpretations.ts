@@ -1,5 +1,5 @@
 /* eslint-disable quote-props */
-import { PsyFunction } from '@/models/psy-function.interface';
+import { PsyFunction } from '../models/psy-function.interface';
 
 export const plusFunctions: { [key: string]: PsyFunction } = {
   '0': {

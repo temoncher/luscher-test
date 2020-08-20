@@ -1,13 +1,14 @@
-import { MainColor } from '@/constants/main-color.enum';
-import { Sign } from '@/constants/sign.enum';
-import { interpretations } from '@/constants/interpretations';
-import { InterpretationSection } from '@/models/interpretation-section.interface';
-import { ColorGroups } from '@/models/color-groups.type';
+import { MainColor } from './constants/main-color.enum';
+import { Sign } from './constants/sign.enum';
+import { interpretations } from './constants/interpretations';
+import { InterpretationSection } from './models/interpretation-section.interface';
+import { ColorGroups } from './models/color-groups.type';
 
 export class SingleStageTest {
     colors: MainColor[];
 
     constructor(colors: MainColor[]) {
+      // TODO: check if numbers are unique
       if (colors.length !== 8) {
         throw new Error('You shold pass an array of 8 colors. No more, no less');
       }
