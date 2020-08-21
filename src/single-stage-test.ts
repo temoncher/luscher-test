@@ -25,7 +25,7 @@ export class SingleStageTest {
           const sign = signString as Sign;
 
           return {
-            title: '',
+            title: interpretations[sign].title,
             sign,
             interpretation: [
               interpretations[sign][groupKey],

@@ -1,13 +1,13 @@
 // eslint-disable-next-line import/extensions
-import { plusFunctions } from './plus-function-interpretations';
+import { asteriskFunction } from '../interpretations/asterisk-function';
+import { plusFunction } from '../interpretations/plus-function';
+import { equalFunction } from '../interpretations/equal-function';
+import { minusFunction } from '../interpretations/minus-function';
 import { Sign } from './sign.enum';
 
-// TODO: finish interpretations
 export const interpretations = {
-  [Sign.PLUS]: plusFunctions,
-  [Sign.ASTERISK]: plusFunctions,
-  [Sign.EQUAL]: plusFunctions,
-  [Sign.MINUS]: plusFunctions,
+  [Sign.PLUS]: plusFunction,
+  [Sign.ASTERISK]: asteriskFunction,
+  [Sign.EQUAL]: equalFunction,
+  [Sign.MINUS]: minusFunction,
 };
-
-// Get interpretation : interpretations[Sign.PLUS][`${firstColor}${secondColor}`]
