@@ -1,12 +1,10 @@
 export enum ColorHex {
-  BLUE = '#000000',
-  GREEN = '#000000',
-  RED = '#000000',
-  YELLOW = '#000000',
-  PURPLE = '#000000',
-  BROWN = '#000000',
-  BLACK = '#000000',
-  GRAY = '#000000',
+  BLUE = '#004983',
+  GREEN = '#1D9772',
+  RED = '#F12F23',
+  YELLOW = '#F2DD00',
+  PURPLE = '#D42481',
+  BROWN = '#C55223',
+  BLACK = '#231F20',
+  GRAY = '#98938D',
 }
-
-// TODO: export color hex values
