@@ -1,9 +1,9 @@
-import { MainColor } from './constants/main-color.enum';
-import { Sign } from './constants/sign.enum';
+import { MainColor } from './types/enums/main-color.enum';
+import { Sign } from './types/enums/sign.enum';
 import { interpretations } from './constants/interpretations';
-import { InterpretationSection } from './models/interpretation-section.interface';
-import { ColorGroups } from './models/color-groups.type';
-import { FunctionKeys } from './models/function-keys';
+import { InterpretationSection } from './types/interpretation-section.interface';
+import { ColorGroups } from './types/color-groups.type';
+import { FunctionKeys } from './types/function-keys';
 
 export class SingleStageTest {
     colors: MainColor[];

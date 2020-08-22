@@ -1,9 +1,9 @@
-import { PsyFunction } from './psy-function.interface';
+import { LuscherFunction } from './psy-function.interface';
 import { FunctionKeys } from './function-keys';
 import { Translations } from './translations.interface';
 
-export type LuscherFunction = {
+export type Interpretation = {
   title: Translations<string>;
  } & {
-   [key in FunctionKeys]: PsyFunction;
+   [key in FunctionKeys]: LuscherFunction;
  };

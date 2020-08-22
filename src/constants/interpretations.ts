@@ -1,5 +1,5 @@
-import { Sign } from '@/constants/sign.enum';
-import { Interpretations } from '@/models/interpretations.type';
+import { Sign } from '@/types/enums/sign.enum';
+import { Interpretations } from '@/types/interpretations.type';
 
 import asteriskFunctionJson from '@/assets/i18n/multi/asterisk-function.json';
 import equalFunctionJson from '@/assets/i18n/multi/equal-function.json';
