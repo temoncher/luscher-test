@@ -3,7 +3,7 @@
   "version": "1.2.0",
   "description": "Lüscher color test",
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/types/index.d.ts",
   "scripts": {
     "start": "node dist/lib/index.js",
     "dev": "webpack --watch",
