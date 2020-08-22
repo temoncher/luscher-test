@@ -1,4 +1,4 @@
-export interface MinusFunctionTranslation {
+export interface MinusFunctionInterpretation {
   physio: string;
   physcho: string;
   inBrief: string;
