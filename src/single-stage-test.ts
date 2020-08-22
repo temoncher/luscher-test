@@ -3,6 +3,7 @@ import { Sign } from './constants/sign.enum';
 import { interpretations } from './constants/interpretations';
 import { InterpretationSection } from './models/interpretation-section.interface';
 import { ColorGroups } from './models/color-groups.type';
+import { FunctionKeys } from './models/json-types';
 
 export class SingleStageTest {
     colors: MainColor[];
@@ -34,15 +35,14 @@ export class SingleStageTest {
 
       return Object.entries(colorGroups)
         .map(([signString, colorGroup]): InterpretationSection => {
-          const groupKey = colorGroup.join('');
+          const groupKey = colorGroup.join('') as FunctionKeys;
           const sign = signString as Sign;
+          const { title, [groupKey]: signInterpretation } = interpretations[sign];
 
           return {
-            title: interpretations[sign].title,
+            title,
             sign,
-            interpretation: [
-              interpretations[sign][groupKey],
-            ],
+            interpretation: [signInterpretation],
           };
         });
     }

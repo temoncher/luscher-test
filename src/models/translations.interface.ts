@@ -1,4 +1,5 @@
-export interface Translations<T> {
-  ru: T;
-  en: T;
+import { TitleType } from './json-types';
+
+export type Translations<T> = {
+  [key in keyof TitleType]: T;
 }
