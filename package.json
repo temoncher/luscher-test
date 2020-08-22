@@ -31,6 +31,9 @@
     "color",
     "test"
   ],
+  "files": [
+    "dist"
+  ],
   "author": "temoncher@yandex.ru",
   "license": "MIT",
   "bugs": {
