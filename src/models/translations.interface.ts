@@ -1,5 +1,4 @@
-import { TitleType } from './json-types';
-
 export type Translations<T> = {
-  [key in keyof TitleType]: T;
+  ru: T;
+  en: T;
 }

@@ -7,7 +7,7 @@ export { ColorResult } from './models/color-result.interface';
 export { InterpretationSection } from './models/interpretation-section.interface';
 export { PsyFunction } from './models/psy-function.interface';
 export { Interpretations } from './models/interpretations.type';
-export * from './models/json-types';
+export { FunctionKeys } from './models/function-keys';
 
 // Enums
 export { ColorHex } from './constants/color-hex.enum';

@@ -3,7 +3,7 @@ import { Sign } from './constants/sign.enum';
 import { interpretations } from './constants/interpretations';
 import { InterpretationSection } from './models/interpretation-section.interface';
 import { ColorGroups } from './models/color-groups.type';
-import { FunctionKeys } from './models/json-types';
+import { FunctionKeys } from './models/function-keys';
 
 export class SingleStageTest {
     colors: MainColor[];
