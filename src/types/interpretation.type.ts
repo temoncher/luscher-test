@@ -1,4 +1,4 @@
-import { LuscherFunction } from './psy-function.interface';
+import { LuscherFunction } from './luscher-function.interface';
 import { FunctionKeys } from './function-keys';
 import { Translations } from './translations.interface';
 

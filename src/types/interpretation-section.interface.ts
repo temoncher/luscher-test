@@ -1,5 +1,5 @@
 import { Sign } from './enums/sign.enum';
-import { LuscherFunction } from './psy-function.interface';
+import { LuscherFunction } from './luscher-function.interface';
 
 export interface InterpretationSection {
   title: LuscherFunction;

@@ -6,9 +6,8 @@ export { ColorGroups } from './types/color-groups.type';
 export { ColorResult } from './types/color-result.interface';
 export { FunctionKeys } from './types/function-keys';
 export { InterpretationSection } from './types/interpretation-section.interface';
-export { Interpretations } from './types/interpretations.type';
-export { Interpretation } from './types/luscher-function.type';
-export { LuscherFunction } from './types/psy-function.interface';
+export { Interpretation } from './types/interpretation.type';
+export { LuscherFunction } from './types/luscher-function.interface';
 export { MinusFunctionInterpretation } from './types/minus-function-interpretation.interface';
 export { Translations } from './types/translations.interface';
 
@@ -19,4 +18,4 @@ export { MainColor } from './types/enums/main-color.enum';
 export { Sign, SignKey } from './types/enums/sign.enum';
 
 // Constatns
-export { interpretations } from './constants/interpretations';
+export { interpretations, Interpretations } from './constants/interpretations';
