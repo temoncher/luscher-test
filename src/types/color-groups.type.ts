@@ -1,6 +1,6 @@
-import { SignKey } from './enums/sign.enum';
+import { Sign } from './enums/sign.enum';
 import { MainColor } from './enums/main-color.enum';
 
 export type ColorGroups = {
-  [key in SignKey]: [MainColor?, MainColor?];
+  [key in Sign]: [MainColor?, MainColor?];
 }
