@@ -1,7 +1,5 @@
 module.exports = {
   env: {
-    browser: true,
-    es2020: true,
     node: true,
   },
   extends: [
@@ -19,6 +17,7 @@ module.exports = {
     'lines-between-class-members': 0,
     'class-methods-use-this': 0,
     'linebreak-style': 0,
+    'import/no-extraneous-dependencies': 0,
     'import/extensions': 0,
     'import/no-unresolved': 0, // conflicts with typescript aliases
     'import/prefer-default-export': 0,

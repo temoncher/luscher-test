@@ -1,6 +1,6 @@
 .*
 **/tsconfig.json
-**/webpack.config.js
+**/webpack.config.ts
 
 node_modules
 src
