@@ -15,6 +15,9 @@ const config: webpack.Configuration = {
   },
   resolve: {
     extensions: ['.ts', '.js'],
+    alias: {
+      '@': path.resolve(__dirname, 'src/'),
+    },
   },
   module: {
     rules: [

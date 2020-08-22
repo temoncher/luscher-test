@@ -1,8 +1,7 @@
-import { MinusFunctionInterpretation } from './minus-function-interpretation';
+import { Translations } from './translations.interface';
+import { MinusFunctionTranslation } from './minus-function-translation.interface';
 
-export interface PsyFunction {
-  asterisks?: 1 | 2 | 3;
-  ru: string | MinusFunctionInterpretation;
-  eng: string | MinusFunctionInterpretation;
+export interface PsyFunction extends Translations<string | MinusFunctionTranslation> {
+  asterisks?: number;
   percentage?: number;
 }
