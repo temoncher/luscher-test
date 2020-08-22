@@ -2,18 +2,20 @@
 export { SingleStageTest } from './single-stage-test';
 
 // Models
-export { ColorGroups } from './models/color-groups.type';
-export { ColorResult } from './models/color-result.interface';
-export { InterpretationSection } from './models/interpretation-section.interface';
-export { MinusFunctionInterpretation } from './models/minus-function-interpretation';
-export { PsyFunction } from './models/psy-function.interface';
+export { ColorGroups } from './types/color-groups.type';
+export { ColorResult } from './types/color-result.interface';
+export { FunctionKeys } from './types/function-keys';
+export { InterpretationSection } from './types/interpretation-section.interface';
+export { Interpretation } from './types/interpretation.type';
+export { LuscherFunction } from './types/luscher-function.interface';
+export { MinusFunctionInterpretation } from './types/minus-function-interpretation.interface';
+export { Translations } from './types/translations.interface';
 
 // Enums
-export { ColorHex } from './constants/color-hex.enum';
-export { EmotionalState } from './constants/emotional-state.enum';
-export { MainColor } from './constants/main-color.enum';
-export { Sign, SignKey } from './constants/sign.enum';
+export { ColorHex } from './types/enums/color-hex.enum';
+export { EmotionalState } from './types/enums/emotional-state.enum';
+export { MainColor } from './types/enums/main-color.enum';
+export { Sign, SignKey } from './types/enums/sign.enum';
 
 // Constatns
-export { interpretations } from './constants/interpretations';
-
+export { interpretations, Interpretations } from './constants/interpretations';
