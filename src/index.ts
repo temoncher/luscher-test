@@ -6,6 +6,7 @@ export { ColorGroups } from './models/color-groups.type';
 export { ColorResult } from './models/color-result.interface';
 export { InterpretationSection } from './models/interpretation-section.interface';
 export { PsyFunction } from './models/psy-function.interface';
+export { Interpretations } from './models/interpretations.type';
 
 // Enums
 export { ColorHex } from './constants/color-hex.enum';

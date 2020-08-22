@@ -1,13 +1,14 @@
-// eslint-disable-next-line import/extensions
-import { asteriskFunction } from '../interpretations/asterisk-function';
-import { plusFunction } from '../interpretations/plus-function';
-import { equalFunction } from '../interpretations/equal-function';
-import { minusFunction } from '../interpretations/minus-function';
-import { Sign } from './sign.enum';
+import { Sign } from '@/constants/sign.enum';
+import { Interpretations } from '@/models/interpretations.type';
 
-export const interpretations = {
-  [Sign.PLUS]: plusFunction,
-  [Sign.ASTERISK]: asteriskFunction,
-  [Sign.EQUAL]: equalFunction,
-  [Sign.MINUS]: minusFunction,
+import asteriskFunctionJson from '@/assets/i18n/asterisk-function.json';
+import equalFunctionJson from '@/assets/i18n/equal-function.json';
+import minusFunctionJson from '@/assets/i18n/minus-function.json';
+import plusFunctionJson from '@/assets/i18n/plus-function.json';
+
+export const interpretations: Interpretations = {
+  [Sign.PLUS]: plusFunctionJson,
+  [Sign.ASTERISK]: asteriskFunctionJson,
+  [Sign.EQUAL]: equalFunctionJson,
+  [Sign.MINUS]: minusFunctionJson,
 };
