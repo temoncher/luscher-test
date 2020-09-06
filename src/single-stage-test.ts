@@ -4,19 +4,19 @@ import { interpretations } from './constants/interpretations';
 import { InterpretationSection } from './types/interpretation-section.interface';
 import { ColorGroups } from './types/color-groups.type';
 import { FunctionKeys } from './types/function-keys';
-import { validateColorsArray } from './helpers/validate-colors-array';
+import { validateSelection } from './helpers/validate-selection';
 
 export class SingleStageTest {
     colors: MainColor[];
 
     constructor(colors: MainColor[]) {
-      validateColorsArray(colors);
+      validateSelection(colors);
 
       this.colors = colors;
     }
 
     interpret(): InterpretationSection[] {
-      const colorGroups = this.getGroups(this.colors);
+      const colorGroups = this.getGroups();
 
       return Object.entries(colorGroups)
         .map(([signString, colorGroup]): InterpretationSection => {
@@ -32,7 +32,7 @@ export class SingleStageTest {
         });
     }
 
-    getGroups(colors: MainColor[]): ColorGroups {
+    getGroups(): ColorGroups {
       const initalGroups: ColorGroups = {
         [Sign.PLUS]: [],
         [Sign.ASTERISK]: [],
@@ -40,7 +40,7 @@ export class SingleStageTest {
         [Sign.MINUS]: [],
       };
 
-      return colors.reduce((colorGroups, color, index) => {
+      return this.colors.reduce((colorGroups, color, index) => {
         switch (index) {
         case 0:
         case 1:

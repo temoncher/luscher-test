@@ -1,7 +1,7 @@
-import { validateColorsArray } from '@/helpers/validate-colors-array';
+import { validateSelection } from '@/helpers/validate-selection';
 import { MainColor } from '@/types/enums/main-color.enum';
 
-describe('[Helpers] Validate colors array', () => {
+describe('[Helpers] Validate selection', () => {
   it('should throw an error when array contains more or less than 8 colors', () => {
     const lessColors = [
       MainColor.BLUE,
