@@ -1,3 +1,10 @@
 module.exports = {
-  extends: ['../.eslintrc.js'],
+  plugins: ['jest'],
+  extends: [
+    '../.eslintrc.js',
+    'plugin:jest/style',
+  ],
+  env: {
+    'jest/globals': true,
+  },
 };
