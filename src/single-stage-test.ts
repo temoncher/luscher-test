@@ -4,28 +4,13 @@ import { interpretations } from './constants/interpretations';
 import { InterpretationSection } from './types/interpretation-section.interface';
 import { ColorGroups } from './types/color-groups.type';
 import { FunctionKeys } from './types/function-keys';
+import { validateColorsArray } from './helpers/validate-colors-array';
 
 export class SingleStageTest {
     colors: MainColor[];
 
     constructor(colors: MainColor[]) {
-      if (!colors || !Array.isArray(colors) || colors.length !== 8) {
-        throw new Error('You shold pass an array of 8 colors. No more, no less');
-      }
-
-      if (colors.length !== new Set(colors).size) {
-        throw new Error('You shold pass an array of unique colors');
-      }
-
-      colors.forEach((color) => {
-        if (typeof color !== 'number') {
-          throw new Error('Colors should be represented as numbers');
-        }
-
-        if (color < 0 || color > 7) {
-          throw new Error('Colors numbers should be in a range from 0 to 7');
-        }
-      });
+      validateColorsArray(colors);
 
       this.colors = colors;
     }
