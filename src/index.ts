@@ -1,5 +1,6 @@
 // Luscher tests
 export { SingleStageTest } from './single-stage-test';
+export { TwoStageTest } from './two-stage-test';
 
 // Models
 export { ColorGroups } from './types/color-groups.type';

@@ -1,6 +1,5 @@
 import { MainColor } from './types/enums/main-color.enum';
 import { validateSelection } from './helpers/validate-selection';
-import { ColorGroups } from './types/color-groups.type';
 import { Sign } from './types/enums/sign.enum';
 import { ColorResult } from './types/color-result.interface';
 import { EmotionalState } from './types/enums/emotional-state.enum';
@@ -21,6 +20,30 @@ export class TwoStageTest {
     const second: ColorResult[] = this.getEmotionalStateForSelection(this.secondSelection);
 
     return [first, second];
+  }
+
+  getPairs(): [MainColor, MainColor][] {
+    const initPairs: [MainColor, MainColor][] = [];
+
+    this.firstSelection.forEach((color, index) => {
+      const firstColorIndex = this.secondSelection.indexOf(color);
+      const colorToCompareTo = this.firstSelection[index + 1];
+      const previousColor = this.secondSelection[firstColorIndex - 1];
+      const nextColor = this.secondSelection[firstColorIndex + 1];
+      const isPreviousMatched = firstColorIndex - 1 >= 0 && previousColor === colorToCompareTo;
+      const isNextMatched = firstColorIndex + 1 < this.secondSelection.length
+       && nextColor === colorToCompareTo;
+
+      if (index + 1 >= this.firstSelection.length) return initPairs;
+
+      if (isPreviousMatched || isNextMatched) {
+        initPairs.push([this.firstSelection[index], colorToCompareTo]);
+      }
+
+      return initPairs;
+    });
+
+    return initPairs;
   }
 
   private getEmotionalStateForSelection(selection: MainColor[]): ColorResult[] {
