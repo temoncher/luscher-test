@@ -4,38 +4,44 @@ import { EmotionalState } from '@/types/enums/emotional-state.enum';
 import { Sign } from '@/types/enums/sign.enum';
 
 const selections: [MainColor[], MainColor[]] = [
-  [5, 7, 2, 3, 4, 0, 6, 1],
-  [4, 6, 7, 2, 0, 5, 1, 3],
+  [6, 7, 3, 2, 1, 5, 4, 0],
+  [3, 5, 7, 6, 1, 2, 4, 0],
 ];
 
 const emotionalStates: [ColorResult[], ColorResult[]] = [
   [
-    { color: 5, signs: [Sign.PLUS] },
+    {
+      color: 6,
+      signs: [Sign.PLUS],
+      emotionalState: EmotionalState.COMPENSATION,
+      anxietyLevel: 3,
+    },
     {
       color: 7,
       signs: [Sign.PLUS],
       emotionalState: EmotionalState.COMPENSATION,
       anxietyLevel: 2,
     },
-    { color: 2, signs: [] },
     { color: 3, signs: [] },
-    { color: 4, signs: [] },
-    { color: 0, signs: [] },
-    { color: 6, signs: [] },
+    { color: 2, signs: [] },
+    { color: 1, signs: [] },
+    { color: 5, signs: [] },
     {
-      color: 1,
+      color: 4,
       signs: [Sign.MINUS],
       emotionalState: EmotionalState.DISTURBANCE,
-      anxietyLevel: 3,
+      anxietyLevel: 2,
+    },
+    {
+      color: 0,
+      signs: [Sign.MINUS],
     },
   ],
   [
-    { color: 4, signs: [Sign.PLUS] },
+    { color: 3, signs: [Sign.PLUS] },
     {
-      color: 6,
+      color: 5,
       signs: [Sign.PLUS],
-      emotionalState: EmotionalState.COMPENSATION,
-      anxietyLevel: 2,
     },
     {
       color: 7,
@@ -43,27 +49,30 @@ const emotionalStates: [ColorResult[], ColorResult[]] = [
       emotionalState: EmotionalState.COMPENSATION,
       anxietyLevel: 1,
     },
-    { color: 2, signs: [] },
-    { color: 0, signs: [] },
-    { color: 5, signs: [] },
+    { color: 6, signs: [] },
+    { color: 1, signs: [] },
     {
-      color: 1,
+      color: 2,
+      signs: [Sign.MINUS],
+      emotionalState: EmotionalState.DISTURBANCE,
+      anxietyLevel: 1,
+    },
+    {
+      color: 4,
       signs: [Sign.MINUS],
       emotionalState: EmotionalState.DISTURBANCE,
       anxietyLevel: 2,
     },
     {
-      color: 3,
+      color: 0,
       signs: [Sign.MINUS],
-      emotionalState: EmotionalState.DISTURBANCE,
-      anxietyLevel: 3,
     },
   ],
 ];
 
-const pairs = [[7, 2]];
+const pairs = [[6, 7], [2, 1], [4, 0]];
 
-export const secondFixture = {
+export const thirdFixture = {
   selections,
   emotionalStates,
   pairs,

@@ -61,7 +61,10 @@ const emotionalStates: [ColorResult[], ColorResult[]] = [
   ],
 ];
 
+const pairs = [[4, 7]];
+
 export const firstFixture = {
   selections,
   emotionalStates,
+  pairs,
 };
