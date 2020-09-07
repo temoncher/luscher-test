@@ -68,20 +68,20 @@ export class TwoStageTest {
 
       if (index < 3 && badColors.includes(color)) {
         colorResult.anxietyLevel = (3 - index) as ColorResult['anxietyLevel'];
-        colorResult.emotionalState = EmotionalState.COMPENSATION;
       }
 
       if (lastCompensationIndex && lastCompensationIndex >= index) {
         colorResult.signs.push(Sign.PLUS);
+        colorResult.emotionalState = EmotionalState.COMPENSATION;
       }
 
       if (index > 4 && goodColors.includes(color)) {
         colorResult.anxietyLevel = (index - 4) as ColorResult['anxietyLevel'];
-        colorResult.emotionalState = EmotionalState.DISTURBANCE;
       }
 
       if (firstDisturbanceIndex && firstDisturbanceIndex <= index) {
         colorResult.signs.push(Sign.MINUS);
+        colorResult.emotionalState = EmotionalState.DISTURBANCE;
       }
 
       return colorResult;

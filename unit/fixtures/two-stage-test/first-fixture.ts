@@ -16,7 +16,11 @@ const emotionalStates: [ColorResult[], ColorResult[]] = [
       emotionalState: EmotionalState.COMPENSATION,
       anxietyLevel: 3,
     },
-    { color: 4, signs: [Sign.PLUS] },
+    {
+      color: 4,
+      signs: [Sign.PLUS],
+      emotionalState: EmotionalState.COMPENSATION,
+    },
     {
       color: 7,
       signs: [Sign.PLUS],
@@ -37,10 +41,18 @@ const emotionalStates: [ColorResult[], ColorResult[]] = [
       emotionalState: EmotionalState.DISTURBANCE,
       anxietyLevel: 2,
     },
-    { color: 6, signs: [Sign.MINUS] },
+    {
+      color: 6,
+      signs: [Sign.MINUS],
+      emotionalState: EmotionalState.DISTURBANCE,
+    },
   ],
   [
-    { color: 3, signs: [Sign.PLUS] },
+    {
+      color: 3,
+      signs: [Sign.PLUS],
+      emotionalState: EmotionalState.COMPENSATION,
+    },
     {
       color: 0,
       signs: [Sign.PLUS],

@@ -10,7 +10,11 @@ const selections: [MainColor[], MainColor[]] = [
 
 const emotionalStates: [ColorResult[], ColorResult[]] = [
   [
-    { color: 5, signs: [Sign.PLUS] },
+    {
+      color: 5,
+      signs: [Sign.PLUS],
+      emotionalState: EmotionalState.COMPENSATION,
+    },
     {
       color: 7,
       signs: [Sign.PLUS],
@@ -30,7 +34,11 @@ const emotionalStates: [ColorResult[], ColorResult[]] = [
     },
   ],
   [
-    { color: 4, signs: [Sign.PLUS] },
+    {
+      color: 4,
+      signs: [Sign.PLUS],
+      emotionalState: EmotionalState.COMPENSATION,
+    },
     {
       color: 6,
       signs: [Sign.PLUS],
