@@ -46,6 +46,18 @@ export class TwoStageTest {
     return initPairs;
   }
 
+  getResult(): [ColorResult[], ColorResult[]] {
+    const initialResults: [ColorResult[], ColorResult[]] = this.getEmotionalState();
+
+    return initialResults;
+  }
+
+  private getResultForSelection(selection: ColorResult[]): ColorResult[] {
+    const pairs = this.getPairs();
+
+    return selection;
+  }
+
   private getEmotionalStateForSelection(selection: MainColor[]): ColorResult[] {
     let lastCompensationIndex: number | null = null;
     let firstDisturbanceIndex: number | null = null;

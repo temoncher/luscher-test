@@ -27,6 +27,16 @@ describe('[Two stage] First fixture', () => {
 
     expect(pairs).toEqual(expectedPairs);
   });
+
+  it('should return result correctly', () => {
+    const [firstSelection, secondSelection] = firstFixture.selections;
+
+    const test = new TwoStageTest(firstSelection, secondSelection);
+    const result = test.getResult();
+    const expectedResult = firstFixture.result;
+
+    expect(result).toEqual(expectedResult);
+  });
 });
 
 describe('[Two stage] Second fixture', () => {
