@@ -5,11 +5,13 @@ import { ColorResult } from './types/color-result.interface';
 import { EmotionalState } from './types/enums/emotional-state.enum';
 import { badColors } from './constants/bad-colors';
 import { goodColors } from './constants/good-colors';
+import { ColorMap } from './types/color-map.type';
 
 export class TwoStageTest {
   readonly pairs: [MainColor, MainColor][]
   readonly emotionalState: [ColorResult[], ColorResult[]]
   readonly groups: [MainColor, MainColor?][][]
+  readonly anxietyLevels: ColorMap<1 | 2 | 3> = {};
 
   constructor(
     private firstSelection: MainColor[],
@@ -64,7 +66,7 @@ export class TwoStageTest {
       };
 
       if (index < 3 && badColors.includes(color)) {
-        colorResult.anxietyLevel = (3 - index) as ColorResult['anxietyLevel'];
+        this.anxietyLevels[color] = (3 - index) as 1 | 2 | 3;
       }
 
       if (lastCompensationIndex && lastCompensationIndex >= index) {
@@ -73,7 +75,7 @@ export class TwoStageTest {
       }
 
       if (index > 4 && goodColors.includes(color)) {
-        colorResult.anxietyLevel = (index - 4) as ColorResult['anxietyLevel'];
+        this.anxietyLevels[color] = (index - 4) as 1 | 2 | 3;
       }
 
       if (firstDisturbanceIndex && firstDisturbanceIndex <= index) {
