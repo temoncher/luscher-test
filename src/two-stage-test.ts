@@ -116,7 +116,7 @@ export class TwoStageTest {
         return;
       }
 
-      if (isNextAlreadyInPair) {
+      if (isNextAlreadyInPair || !nextColorResult) {
         groups.push([colorResult.color]);
 
         return;

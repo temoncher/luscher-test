@@ -70,6 +70,15 @@ describe('[Two stage] Second fixture', () => {
 
     expect(pairs).toEqual(expectedPairs);
   });
+
+  it('should return groups correctly', () => {
+    const [firstSelection, secondSelection] = secondFixture.selections;
+
+    const { groups } = new TwoStageTest(firstSelection, secondSelection);
+    const expectedGroups = secondFixture.groups;
+
+    expect(groups).toEqual(expectedGroups);
+  });
 });
 
 describe('[Two stage] Third fixture', () => {
@@ -94,5 +103,14 @@ describe('[Two stage] Third fixture', () => {
     const expectedPairs = thirdFixture.pairs;
 
     expect(pairs).toEqual(expectedPairs);
+  });
+
+  it('should return groups correctly', () => {
+    const [firstSelection, secondSelection] = thirdFixture.selections;
+
+    const { groups } = new TwoStageTest(firstSelection, secondSelection);
+    const expectedGroups = thirdFixture.groups;
+
+    expect(groups).toEqual(expectedGroups);
   });
 });

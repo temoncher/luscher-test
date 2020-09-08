@@ -1,14 +1,13 @@
-import { MainColor } from '@/types/enums/main-color.enum';
-import { ColorResult } from '@/types/color-result.interface';
 import { EmotionalState } from '@/types/enums/emotional-state.enum';
 import { Sign } from '@/types/enums/sign.enum';
+import { TwoStageFixture } from './two-stage-fixture.interface';
 
-const selections: [MainColor[], MainColor[]] = [
+const selections: TwoStageFixture['selections'] = [
   [5, 7, 2, 3, 4, 0, 6, 1],
   [4, 6, 7, 2, 0, 5, 1, 3],
 ];
 
-const emotionalStates: [ColorResult[], ColorResult[]] = [
+const emotionalStates: TwoStageFixture['emotionalStates'] = [
   [
     {
       color: 5,
@@ -69,10 +68,19 @@ const emotionalStates: [ColorResult[], ColorResult[]] = [
   ],
 ];
 
-const pairs = [[7, 2]];
+const pairs: TwoStageFixture['pairs'] = [[7, 2]];
 
-export const secondFixture = {
+const groups: TwoStageFixture['groups'] = [
+  [[5, 7], [7, 2], [3, 4], [0, 6], [1]],
+  [[4, 6], [6, 7], [7, 2], [0, 5], [1, 3]],
+];
+
+const result: TwoStageFixture['result'] = [[], []];
+
+export const secondFixture: TwoStageFixture = {
   selections,
   emotionalStates,
   pairs,
+  groups,
+  result,
 };
