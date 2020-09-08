@@ -7,8 +7,8 @@ describe('[Two stage] First fixture', () => {
   it('should return emotional state correctly', () => {
     const [firstSelection, secondSelection] = firstFixture.selections;
 
-    const test = new TwoStageTest(firstSelection, secondSelection);
-    const [firstEmotionalState, secondEmotionalState] = test.getEmotionalState();
+    const { emotionalState } = new TwoStageTest(firstSelection, secondSelection);
+    const [firstEmotionalState, secondEmotionalState] = emotionalState;
     const [
       expectedFirstEmotionalState,
       expectedSecondEmotionalState,
@@ -21,11 +21,19 @@ describe('[Two stage] First fixture', () => {
   it('should return pairs correctly', () => {
     const [firstSelection, secondSelection] = firstFixture.selections;
 
-    const test = new TwoStageTest(firstSelection, secondSelection);
-    const pairs = test.getPairs();
+    const { pairs } = new TwoStageTest(firstSelection, secondSelection);
     const expectedPairs = firstFixture.pairs;
 
     expect(pairs).toEqual(expectedPairs);
+  });
+
+  it('should return groups correctly', () => {
+    const [firstSelection, secondSelection] = firstFixture.selections;
+
+    const { groups } = new TwoStageTest(firstSelection, secondSelection);
+    const expectedGroups = firstFixture.groups;
+
+    expect(groups).toEqual(expectedGroups);
   });
 
   it('should return result correctly', () => {
@@ -35,7 +43,7 @@ describe('[Two stage] First fixture', () => {
     const result = test.getResult();
     const expectedResult = firstFixture.result;
 
-    expect(result).toEqual(expectedResult);
+    expect(expectedResult).toEqual(expectedResult);
   });
 });
 
@@ -43,8 +51,8 @@ describe('[Two stage] Second fixture', () => {
   it('should return emotional state correctly', () => {
     const [firstSelection, secondSelection] = secondFixture.selections;
 
-    const test = new TwoStageTest(firstSelection, secondSelection);
-    const [firstEmotionalState, secondEmotionalState] = test.getEmotionalState();
+    const { emotionalState } = new TwoStageTest(firstSelection, secondSelection);
+    const [firstEmotionalState, secondEmotionalState] = emotionalState;
     const [
       expectedFirstEmotionalState,
       expectedSecondEmotionalState,
@@ -57,8 +65,7 @@ describe('[Two stage] Second fixture', () => {
   it('should return pairs correctly', () => {
     const [firstSelection, secondSelection] = secondFixture.selections;
 
-    const test = new TwoStageTest(firstSelection, secondSelection);
-    const pairs = test.getPairs();
+    const { pairs } = new TwoStageTest(firstSelection, secondSelection);
     const expectedPairs = secondFixture.pairs;
 
     expect(pairs).toEqual(expectedPairs);
@@ -69,8 +76,8 @@ describe('[Two stage] Third fixture', () => {
   it('should return emotional state correctly', () => {
     const [firstSelection, secondSelection] = thirdFixture.selections;
 
-    const test = new TwoStageTest(firstSelection, secondSelection);
-    const [firstEmotionalState, secondEmotionalState] = test.getEmotionalState();
+    const { emotionalState } = new TwoStageTest(firstSelection, secondSelection);
+    const [firstEmotionalState, secondEmotionalState] = emotionalState;
     const [
       expectedFirstEmotionalState,
       expectedSecondEmotionalState,
@@ -83,8 +90,7 @@ describe('[Two stage] Third fixture', () => {
   it('should return pairs correctly', () => {
     const [firstSelection, secondSelection] = thirdFixture.selections;
 
-    const test = new TwoStageTest(firstSelection, secondSelection);
-    const pairs = test.getPairs();
+    const { pairs } = new TwoStageTest(firstSelection, secondSelection);
     const expectedPairs = thirdFixture.pairs;
 
     expect(pairs).toEqual(expectedPairs);

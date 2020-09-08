@@ -7,55 +7,40 @@ import { badColors } from './constants/bad-colors';
 import { goodColors } from './constants/good-colors';
 
 export class TwoStageTest {
+  readonly pairs: [MainColor, MainColor][]
+  readonly emotionalState: [ColorResult[], ColorResult[]]
+  readonly groups: [MainColor, MainColor?][][]
+
   constructor(
     private firstSelection: MainColor[],
     private secondSelection: MainColor[],
   ) {
     validateSelection(this.firstSelection);
     validateSelection(this.secondSelection);
+
+    this.pairs = this.getPairs();
+    this.emotionalState = this.getEmotionalState();
+    this.groups = this.getGroups();
   }
 
-  getEmotionalState(): [ColorResult[], ColorResult[]] {
+  private getEmotionalState(): [ColorResult[], ColorResult[]] {
     const first: ColorResult[] = this.getEmotionalStateForSelection(this.firstSelection);
     const second: ColorResult[] = this.getEmotionalStateForSelection(this.secondSelection);
 
     return [first, second];
   }
 
-  getPairs(): [MainColor, MainColor][] {
-    const initPairs: [MainColor, MainColor][] = [];
+  private getGroups(): [MainColor, MainColor?][][] {
+    const first: [MainColor, MainColor?][] = this.getGroupsForSelection(this.emotionalState[0]);
+    const second: [MainColor, MainColor?][] = this.getGroupsForSelection(this.emotionalState[1]);
 
-    this.firstSelection.forEach((color, index) => {
-      const firstColorIndex = this.secondSelection.indexOf(color);
-      const colorToCompareTo = this.firstSelection[index + 1];
-      const previousColor = this.secondSelection[firstColorIndex - 1];
-      const nextColor = this.secondSelection[firstColorIndex + 1];
-      const isPreviousMatched = firstColorIndex - 1 >= 0 && previousColor === colorToCompareTo;
-      const isNextMatched = firstColorIndex + 1 < this.secondSelection.length
-       && nextColor === colorToCompareTo;
-
-      if (index + 1 >= this.firstSelection.length) return initPairs;
-
-      if (isPreviousMatched || isNextMatched) {
-        initPairs.push([this.firstSelection[index], colorToCompareTo]);
-      }
-
-      return initPairs;
-    });
-
-    return initPairs;
+    return [first, second];
   }
 
   getResult(): [ColorResult[], ColorResult[]] {
     const initialResults: [ColorResult[], ColorResult[]] = this.getEmotionalState();
 
     return initialResults;
-  }
-
-  private getResultForSelection(selection: ColorResult[]): ColorResult[] {
-    const pairs = this.getPairs();
-
-    return selection;
   }
 
   private getEmotionalStateForSelection(selection: MainColor[]): ColorResult[] {
@@ -98,5 +83,78 @@ export class TwoStageTest {
 
       return colorResult;
     });
+  }
+
+  private getGroupsForSelection(selection: ColorResult[]): [MainColor, MainColor?][] {
+    const groups: [MainColor, MainColor?][] = [];
+
+    selection.forEach((colorResult, index) => {
+      const nextColorResult = selection[index + 1] as ColorResult | undefined;
+      const isEmotional = Boolean(colorResult.emotionalState);
+      const isNextEmotional = Boolean(nextColorResult?.emotionalState);
+      const hasGroup = Boolean(groups.find((pair) => pair.includes(colorResult.color)));
+      const hasPairWithNext = Boolean(nextColorResult && this.pairs.find((pair) => {
+        const hasCurrentColor = pair.includes(colorResult.color);
+        const hasNextColor = pair.includes(nextColorResult.color);
+
+        return hasCurrentColor && hasNextColor;
+      }));
+      const isNextAlreadyInPair = Boolean(nextColorResult && this.pairs.find((pair) => {
+        const hasNextColor = pair.includes(nextColorResult.color);
+        const hasNextAfterNextColor = pair.includes(selection[index + 2]?.color);
+
+        return hasNextColor && hasNextAfterNextColor;
+      }));
+
+      if (hasPairWithNext || (isEmotional && isNextEmotional)) {
+        groups.push([colorResult.color, nextColorResult?.color]);
+
+        return;
+      }
+
+      if (hasGroup) {
+        return;
+      }
+
+      if (isNextAlreadyInPair) {
+        groups.push([colorResult.color]);
+
+        return;
+      }
+
+      if (!isEmotional && !isNextEmotional) {
+        groups.push([colorResult.color, nextColorResult?.color]);
+      }
+    });
+
+    return groups;
+  }
+
+  private getResultForSelection(selection: ColorResult[]): ColorResult[] {
+    return selection;
+  }
+
+  private getPairs(): [MainColor, MainColor][] {
+    const pairs: [MainColor, MainColor][] = [];
+
+    this.firstSelection.forEach((color, index) => {
+      const firstColorIndex = this.secondSelection.indexOf(color);
+      const colorToCompareTo = this.firstSelection[index + 1];
+      const previousColor = this.secondSelection[firstColorIndex - 1];
+      const nextColor = this.secondSelection[firstColorIndex + 1];
+      const isPreviousMatched = firstColorIndex - 1 >= 0 && previousColor === colorToCompareTo;
+      const isNextMatched = firstColorIndex + 1 < this.secondSelection.length
+       && nextColor === colorToCompareTo;
+
+      if (index + 1 >= this.firstSelection.length) return pairs;
+
+      if (isPreviousMatched || isNextMatched) {
+        pairs.push([this.firstSelection[index], colorToCompareTo]);
+      }
+
+      return pairs;
+    });
+
+    return pairs;
   }
 }

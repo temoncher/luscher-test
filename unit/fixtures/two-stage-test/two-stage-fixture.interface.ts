@@ -5,5 +5,6 @@ export interface TwoStageFixture {
   selections: [MainColor[], MainColor[]];
   emotionalStates: [ColorResult[], ColorResult[]];
   pairs: [MainColor, MainColor][];
+  groups: [MainColor, MainColor?][][];
   result: [ColorResult[], ColorResult[]];
 }

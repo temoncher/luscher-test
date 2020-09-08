@@ -76,6 +76,11 @@ const emotionalStates: [ColorResult[], ColorResult[]] = [
 
 const pairs: [MainColor, MainColor][] = [[4, 7]];
 
+const groups: [MainColor, MainColor?][][] = [
+  [[0, 4], [4, 7], [5, 2], [3, 1], [1, 6]],
+  [[3, 0], [5, 1], [2, 6], [7, 4]],
+];
+
 const result: [ColorResult[], ColorResult[]] = [
   [
     {
@@ -145,5 +150,6 @@ export const firstFixture: TwoStageFixture = {
   selections,
   emotionalStates,
   pairs,
+  groups,
   result,
 };
