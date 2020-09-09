@@ -7,11 +7,16 @@ import { badColors } from './constants/bad-colors';
 import { goodColors } from './constants/good-colors';
 import { ColorMap } from './types/color-map.type';
 
+interface EmotionalStatesResult {
+  anxietyLevels: ColorMap<1 | 2 | 3>;
+  emotionalStates: ColorMap<EmotionalState>;
+}
+
 export class TwoStageTest {
   readonly pairs: [MainColor, MainColor][]
-  readonly emotionalState: [ColorResult[], ColorResult[]]
   readonly groups: [MainColor, MainColor?][][]
-  readonly anxietyLevels: ColorMap<1 | 2 | 3> = {};
+  readonly emotionalStates: [ColorMap<EmotionalState>, ColorMap<EmotionalState>] = [{}, {}];
+  readonly anxietyLevels: [ColorMap<1 | 2 | 3>, ColorMap<1 | 2 | 3>] = [{}, {}];
 
   constructor(
     private firstSelection: MainColor[],
@@ -21,31 +26,46 @@ export class TwoStageTest {
     validateSelection(this.secondSelection);
 
     this.pairs = this.getPairs();
-    this.emotionalState = this.getEmotionalState();
+    const [firstEmotionalStates, secondEmotionalStates] = this.getEmotionalState();
+
+    this.emotionalStates = [
+      firstEmotionalStates.emotionalStates,
+      secondEmotionalStates.emotionalStates,
+    ];
+    this.anxietyLevels = [
+      firstEmotionalStates.anxietyLevels,
+      secondEmotionalStates.anxietyLevels,
+    ];
     this.groups = this.getGroups();
   }
 
-  private getEmotionalState(): [ColorResult[], ColorResult[]] {
-    const first: ColorResult[] = this.getEmotionalStateForSelection(this.firstSelection);
-    const second: ColorResult[] = this.getEmotionalStateForSelection(this.secondSelection);
+  private getEmotionalState(): [EmotionalStatesResult, EmotionalStatesResult] {
+    const first = this.getEmotionalStateForSelection(this.firstSelection);
+    const second = this.getEmotionalStateForSelection(this.secondSelection);
 
     return [first, second];
   }
 
   private getGroups(): [MainColor, MainColor?][][] {
-    const first: [MainColor, MainColor?][] = this.getGroupsForSelection(this.emotionalState[0]);
-    const second: [MainColor, MainColor?][] = this.getGroupsForSelection(this.emotionalState[1]);
+    const first: [MainColor, MainColor?][] = this.getGroupsForSelection(
+      this.firstSelection,
+      this.emotionalStates[0],
+    );
+    const second: [MainColor, MainColor?][] = this.getGroupsForSelection(
+      this.secondSelection,
+      this.emotionalStates[1],
+    );
 
     return [first, second];
   }
 
   getResult(): [ColorResult[], ColorResult[]] {
-    const initialResults: [ColorResult[], ColorResult[]] = this.getEmotionalState();
-
-    return initialResults;
+    return [[], []];
   }
 
-  private getEmotionalStateForSelection(selection: MainColor[]): ColorResult[] {
+  private getEmotionalStateForSelection(selection: MainColor[]): EmotionalStatesResult {
+    const anxietyLevels: ColorMap<1 | 2 | 3> = {};
+    const emotionalStates: ColorMap<EmotionalState> = {};
     let lastCompensationIndex: number | null = null;
     let firstDisturbanceIndex: number | null = null;
 
@@ -59,57 +79,57 @@ export class TwoStageTest {
       }
     });
 
-    return selection.map((color, index) => {
-      const colorResult: ColorResult = {
-        color,
-        signs: [],
-      };
-
+    selection.forEach((color, index) => {
       if (index < 3 && badColors.includes(color)) {
-        this.anxietyLevels[color] = (3 - index) as 1 | 2 | 3;
+        anxietyLevels[color] = (3 - index) as 1 | 2 | 3;
       }
 
       if (lastCompensationIndex && lastCompensationIndex >= index) {
-        colorResult.signs.push(Sign.PLUS);
-        colorResult.emotionalState = EmotionalState.COMPENSATION;
+        emotionalStates[color] = EmotionalState.COMPENSATION;
       }
 
       if (index > 4 && goodColors.includes(color)) {
-        this.anxietyLevels[color] = (index - 4) as 1 | 2 | 3;
+        anxietyLevels[color] = (index - 4) as 1 | 2 | 3;
       }
 
       if (firstDisturbanceIndex && firstDisturbanceIndex <= index) {
-        colorResult.signs.push(Sign.MINUS);
-        colorResult.emotionalState = EmotionalState.DISTURBANCE;
+        emotionalStates[color] = EmotionalState.DISTURBANCE;
       }
-
-      return colorResult;
     });
+
+    return {
+      anxietyLevels,
+      emotionalStates,
+    };
   }
 
-  private getGroupsForSelection(selection: ColorResult[]): [MainColor, MainColor?][] {
+  private getGroupsForSelection(
+    selection: MainColor[],
+    emotionalStates: ColorMap<EmotionalState>,
+  ): [MainColor, MainColor?][] {
     const groups: [MainColor, MainColor?][] = [];
 
-    selection.forEach((colorResult, index) => {
-      const nextColorResult = selection[index + 1] as ColorResult | undefined;
-      const isEmotional = Boolean(colorResult.emotionalState);
-      const isNextEmotional = Boolean(nextColorResult?.emotionalState);
-      const hasGroup = Boolean(groups.find((pair) => pair.includes(colorResult.color)));
-      const hasPairWithNext = Boolean(nextColorResult && this.pairs.find((pair) => {
-        const hasCurrentColor = pair.includes(colorResult.color);
-        const hasNextColor = pair.includes(nextColorResult.color);
+    selection.forEach((color, index) => {
+      const nextColor = selection[index + 1] as MainColor | undefined;
+      const hasNext = typeof nextColor !== 'undefined';
+      const isEmotional = Boolean(emotionalStates[color]);
+      const isNextEmotional = Boolean(hasNext && emotionalStates[nextColor!]);
+      const hasGroup = Boolean(groups.find((pair) => pair.includes(color)));
+      const hasPairWithNext = Boolean(hasNext && this.pairs.find((pair) => {
+        const hasCurrentColor = pair.includes(color);
+        const hasNextColor = pair.includes(nextColor!);
 
         return hasCurrentColor && hasNextColor;
       }));
-      const isNextAlreadyInPair = Boolean(nextColorResult && this.pairs.find((pair) => {
-        const hasNextColor = pair.includes(nextColorResult.color);
-        const hasNextAfterNextColor = pair.includes(selection[index + 2]?.color);
+      const isNextAlreadyInPair = Boolean(hasNext && this.pairs.find((pair) => {
+        const hasNextColor = pair.includes(nextColor!);
+        const hasNextAfterNextColor = pair.includes(selection[index + 2]);
 
         return hasNextColor && hasNextAfterNextColor;
       }));
 
       if (hasPairWithNext || (isEmotional && isNextEmotional)) {
-        groups.push([colorResult.color, nextColorResult?.color]);
+        groups.push([color, nextColor]);
 
         return;
       }
@@ -118,14 +138,14 @@ export class TwoStageTest {
         return;
       }
 
-      if (isNextAlreadyInPair || !nextColorResult) {
-        groups.push([colorResult.color]);
+      if (isNextAlreadyInPair || !nextColor) {
+        groups.push([color]);
 
         return;
       }
 
       if (!isEmotional && !isNextEmotional) {
-        groups.push([colorResult.color, nextColorResult?.color]);
+        groups.push([color, nextColor]);
       }
     });
 
@@ -160,3 +180,5 @@ export class TwoStageTest {
     return pairs;
   }
 }
+
+const test = new TwoStageTest([0, 4, 7, 5, 2, 3, 1, 6], [3, 0, 5, 1, 2, 6, 7, 4]);

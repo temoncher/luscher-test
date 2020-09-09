@@ -4,113 +4,73 @@ import { secondFixture } from './fixtures/two-stage-test/second-fixture';
 import { thirdFixture } from './fixtures/two-stage-test/third-fixture';
 
 describe('[Two stage] First fixture', () => {
+  let test: TwoStageTest;
+
+  beforeEach(() => {
+    test = new TwoStageTest(...firstFixture.selections);
+  });
+
+  it('should return anxiety levels correctly', () => {
+    expect(test.anxietyLevels).toEqual(firstFixture.anxietyLevels);
+  });
+
   it('should return emotional state correctly', () => {
-    const [firstSelection, secondSelection] = firstFixture.selections;
-
-    const { emotionalState } = new TwoStageTest(firstSelection, secondSelection);
-    const [firstEmotionalState, secondEmotionalState] = emotionalState;
-    const [
-      expectedFirstEmotionalState,
-      expectedSecondEmotionalState,
-    ] = firstFixture.emotionalStates;
-
-    expect(firstEmotionalState).toEqual(expectedFirstEmotionalState);
-    expect(secondEmotionalState).toEqual(expectedSecondEmotionalState);
+    expect(test.emotionalStates).toEqual(firstFixture.emotionalStates);
   });
 
   it('should return pairs correctly', () => {
-    const [firstSelection, secondSelection] = firstFixture.selections;
-
-    const { pairs } = new TwoStageTest(firstSelection, secondSelection);
-    const expectedPairs = firstFixture.pairs;
-
-    expect(pairs).toEqual(expectedPairs);
+    expect(test.pairs).toEqual(firstFixture.pairs);
   });
 
   it('should return groups correctly', () => {
-    const [firstSelection, secondSelection] = firstFixture.selections;
-
-    const { groups } = new TwoStageTest(firstSelection, secondSelection);
-    const expectedGroups = firstFixture.groups;
-
-    expect(groups).toEqual(expectedGroups);
-  });
-
-  it('should return result correctly', () => {
-    const [firstSelection, secondSelection] = firstFixture.selections;
-
-    const test = new TwoStageTest(firstSelection, secondSelection);
-    const result = test.getResult();
-    const expectedResult = firstFixture.result;
-
-    expect(expectedResult).toEqual(expectedResult);
+    expect(test.groups).toEqual(firstFixture.groups);
   });
 });
 
 describe('[Two stage] Second fixture', () => {
+  let test: TwoStageTest;
+
+  beforeEach(() => {
+    test = new TwoStageTest(...secondFixture.selections);
+  });
+
+  it('should return anxiety levels correctly', () => {
+    expect(test.anxietyLevels).toEqual(secondFixture.anxietyLevels);
+  });
+
   it('should return emotional state correctly', () => {
-    const [firstSelection, secondSelection] = secondFixture.selections;
-
-    const { emotionalState } = new TwoStageTest(firstSelection, secondSelection);
-    const [firstEmotionalState, secondEmotionalState] = emotionalState;
-    const [
-      expectedFirstEmotionalState,
-      expectedSecondEmotionalState,
-    ] = secondFixture.emotionalStates;
-
-    expect(firstEmotionalState).toEqual(expectedFirstEmotionalState);
-    expect(secondEmotionalState).toEqual(expectedSecondEmotionalState);
+    expect(test.emotionalStates).toEqual(secondFixture.emotionalStates);
   });
 
   it('should return pairs correctly', () => {
-    const [firstSelection, secondSelection] = secondFixture.selections;
-
-    const { pairs } = new TwoStageTest(firstSelection, secondSelection);
-    const expectedPairs = secondFixture.pairs;
-
-    expect(pairs).toEqual(expectedPairs);
+    expect(test.pairs).toEqual(secondFixture.pairs);
   });
 
   it('should return groups correctly', () => {
-    const [firstSelection, secondSelection] = secondFixture.selections;
-
-    const { groups } = new TwoStageTest(firstSelection, secondSelection);
-    const expectedGroups = secondFixture.groups;
-
-    expect(groups).toEqual(expectedGroups);
+    expect(test.groups).toEqual(secondFixture.groups);
   });
 });
 
 describe('[Two stage] Third fixture', () => {
+  let test: TwoStageTest;
+
+  beforeEach(() => {
+    test = new TwoStageTest(...thirdFixture.selections);
+  });
+
+  it('should return anxiety levels correctly', () => {
+    expect(test.anxietyLevels).toEqual(thirdFixture.anxietyLevels);
+  });
+
   it('should return emotional state correctly', () => {
-    const [firstSelection, secondSelection] = thirdFixture.selections;
-
-    const { emotionalState } = new TwoStageTest(firstSelection, secondSelection);
-    const [firstEmotionalState, secondEmotionalState] = emotionalState;
-    const [
-      expectedFirstEmotionalState,
-      expectedSecondEmotionalState,
-    ] = thirdFixture.emotionalStates;
-
-    expect(firstEmotionalState).toEqual(expectedFirstEmotionalState);
-    expect(secondEmotionalState).toEqual(expectedSecondEmotionalState);
+    expect(test.emotionalStates).toEqual(thirdFixture.emotionalStates);
   });
 
   it('should return pairs correctly', () => {
-    const [firstSelection, secondSelection] = thirdFixture.selections;
-
-    const { pairs } = new TwoStageTest(firstSelection, secondSelection);
-    const expectedPairs = thirdFixture.pairs;
-
-    expect(pairs).toEqual(expectedPairs);
+    expect(test.pairs).toEqual(thirdFixture.pairs);
   });
 
   it('should return groups correctly', () => {
-    const [firstSelection, secondSelection] = thirdFixture.selections;
-
-    const { groups } = new TwoStageTest(firstSelection, secondSelection);
-    const expectedGroups = thirdFixture.groups;
-
-    expect(groups).toEqual(expectedGroups);
+    expect(test.groups).toEqual(thirdFixture.groups);
   });
 });

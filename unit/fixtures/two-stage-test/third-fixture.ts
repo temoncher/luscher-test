@@ -2,6 +2,7 @@ import { EmotionalState } from '@/types/enums/emotional-state.enum';
 import { Sign } from '@/types/enums/sign.enum';
 import { MainColor } from '@/types/enums/main-color.enum';
 import { ColorResult } from '@/types/color-result.interface';
+import { ColorMap } from '@/types/color-map.type';
 import { TwoStageFixture } from './two-stage-fixture.interface';
 
 const selections: [MainColor[], MainColor[]] = [
@@ -9,74 +10,34 @@ const selections: [MainColor[], MainColor[]] = [
   [3, 5, 7, 6, 1, 2, 4, 0],
 ];
 
-const emotionalStates: [ColorResult[], ColorResult[]] = [
-  [
-    {
-      color: 6,
-      signs: [Sign.PLUS],
-      emotionalState: EmotionalState.COMPENSATION,
-      anxietyLevel: 3,
-    },
-    {
-      color: 7,
-      signs: [Sign.PLUS],
-      emotionalState: EmotionalState.COMPENSATION,
-      anxietyLevel: 2,
-    },
-    { color: 3, signs: [] },
-    { color: 2, signs: [] },
-    { color: 1, signs: [] },
-    { color: 5, signs: [] },
-    {
-      color: 4,
-      signs: [Sign.MINUS],
-      emotionalState: EmotionalState.DISTURBANCE,
-      anxietyLevel: 2,
-    },
-    {
-      color: 0,
-      signs: [Sign.MINUS],
-      emotionalState: EmotionalState.DISTURBANCE,
-    },
-  ],
-  [
-    {
-      color: 3,
-      signs: [Sign.PLUS],
-      emotionalState: EmotionalState.COMPENSATION,
-    },
-    {
-      color: 5,
-      signs: [Sign.PLUS],
-      emotionalState: EmotionalState.COMPENSATION,
+const anxietyLevels: [ColorMap<1 | 2 | 3>, ColorMap<1 | 2 | 3>] = [
+  {
+    6: 3,
+    7: 2,
+    4: 2,
+  },
+  {
+    7: 1,
+    2: 1,
+    4: 2,
+  },
+];
 
-    },
-    {
-      color: 7,
-      signs: [Sign.PLUS],
-      emotionalState: EmotionalState.COMPENSATION,
-      anxietyLevel: 1,
-    },
-    { color: 6, signs: [] },
-    { color: 1, signs: [] },
-    {
-      color: 2,
-      signs: [Sign.MINUS],
-      emotionalState: EmotionalState.DISTURBANCE,
-      anxietyLevel: 1,
-    },
-    {
-      color: 4,
-      signs: [Sign.MINUS],
-      emotionalState: EmotionalState.DISTURBANCE,
-      anxietyLevel: 2,
-    },
-    {
-      color: 0,
-      signs: [Sign.MINUS],
-      emotionalState: EmotionalState.DISTURBANCE,
-    },
-  ],
+const emotionalStates: [ColorMap<EmotionalState>, ColorMap<EmotionalState>] = [
+  {
+    6: EmotionalState.COMPENSATION,
+    7: EmotionalState.COMPENSATION,
+    4: EmotionalState.DISTURBANCE,
+    0: EmotionalState.DISTURBANCE,
+  },
+  {
+    3: EmotionalState.COMPENSATION,
+    5: EmotionalState.COMPENSATION,
+    7: EmotionalState.COMPENSATION,
+    2: EmotionalState.DISTURBANCE,
+    4: EmotionalState.DISTURBANCE,
+    0: EmotionalState.DISTURBANCE,
+  },
 ];
 
 const pairs: [MainColor, MainColor][] = [[6, 7], [2, 1], [4, 0]];
@@ -90,6 +51,7 @@ const result: [ColorResult[], ColorResult[]] = [[], []];
 
 export const thirdFixture: TwoStageFixture = {
   selections,
+  anxietyLevels,
   emotionalStates,
   pairs,
   groups,
