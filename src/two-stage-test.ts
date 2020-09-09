@@ -180,5 +180,3 @@ export class TwoStageTest {
     return pairs;
   }
 }
-
-const test = new TwoStageTest([0, 4, 7, 5, 2, 3, 1, 6], [3, 0, 5, 1, 2, 6, 7, 4]);
