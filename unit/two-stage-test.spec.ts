@@ -1,5 +1,6 @@
 import { TwoStageTest } from '@/two-stage-test';
 import { firstFixture } from './fixtures/two-stage-test/first-fixture';
+import { fourthFixture } from './fixtures/two-stage-test/fourth-fixture';
 import { secondFixture } from './fixtures/two-stage-test/second-fixture';
 import { thirdFixture } from './fixtures/two-stage-test/third-fixture';
 
@@ -84,5 +85,33 @@ describe('[Two stage] Third fixture', () => {
 
   it('should return signs correctly', () => {
     expect(test.signs).toEqual(thirdFixture.signs);
+  });
+});
+
+describe('[Two stage] Fourth fixture', () => {
+  let test: TwoStageTest;
+
+  beforeEach(() => {
+    test = new TwoStageTest(...fourthFixture.selections);
+  });
+
+  it('should return anxiety levels correctly', () => {
+    expect(test.anxietyLevels).toEqual(fourthFixture.anxietyLevels);
+  });
+
+  it('should return emotional state correctly', () => {
+    expect(test.emotionalStates).toEqual(fourthFixture.emotionalStates);
+  });
+
+  it('should return pairs correctly', () => {
+    expect(test.pairs).toEqual(fourthFixture.pairs);
+  });
+
+  it('should return groups correctly', () => {
+    expect(test.groups).toEqual(fourthFixture.groups);
+  });
+
+  it('should return signs correctly', () => {
+    expect(test.signs).toEqual(fourthFixture.signs);
   });
 });
