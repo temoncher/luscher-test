@@ -48,6 +48,7 @@ const groups: [MainColor, MainColor?][][] = [
 const signs: [ColorMap<[Sign, Sign?]>, ColorMap<[Sign, Sign?]>] = [
   {
     5: [Sign.PLUS],
+    // TODO: investigate what's wrong with this case (should be only plus)
     7: [Sign.PLUS, Sign.ASTERISK],
     2: [Sign.ASTERISK],
     3: [Sign.EQUAL],
