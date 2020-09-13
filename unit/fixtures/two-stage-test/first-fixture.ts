@@ -46,6 +46,29 @@ const groups: [MainColor, MainColor?][][] = [
   [[3, 0], [5, 1], [2, 6], [7, 4]],
 ];
 
+const signs: [ColorMap<[Sign, Sign?]>, ColorMap<[Sign, Sign?]>] = [
+  {
+    0: [Sign.PLUS],
+    4: [Sign.PLUS],
+    7: [Sign.PLUS],
+    5: [Sign.ASTERISK],
+    2: [Sign.ASTERISK],
+    3: [Sign.MINUS],
+    1: [Sign.MINUS],
+    6: [Sign.MINUS],
+  },
+  {
+    3: [Sign.PLUS],
+    0: [Sign.PLUS],
+    5: [Sign.ASTERISK],
+    1: [Sign.ASTERISK],
+    2: [Sign.EQUAL],
+    6: [Sign.EQUAL],
+    7: [Sign.MINUS],
+    4: [Sign.MINUS],
+  },
+];
+
 const result: [ColorResult[], ColorResult[]] = [[], []];
 
 export const firstFixture: TwoStageFixture = {
@@ -54,5 +77,6 @@ export const firstFixture: TwoStageFixture = {
   emotionalStates,
   pairs,
   groups,
+  signs,
   result,
 };

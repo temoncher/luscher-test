@@ -25,6 +25,10 @@ describe('[Two stage] First fixture', () => {
   it('should return groups correctly', () => {
     expect(test.groups).toEqual(firstFixture.groups);
   });
+
+  it('should return signs correctly', () => {
+    expect(test.signs).toEqual(firstFixture.signs);
+  });
 });
 
 describe('[Two stage] Second fixture', () => {
@@ -49,6 +53,10 @@ describe('[Two stage] Second fixture', () => {
   it('should return groups correctly', () => {
     expect(test.groups).toEqual(secondFixture.groups);
   });
+
+  it('should return signs correctly', () => {
+    expect(test.signs).toEqual(secondFixture.signs);
+  });
 });
 
 describe('[Two stage] Third fixture', () => {
@@ -72,5 +80,9 @@ describe('[Two stage] Third fixture', () => {
 
   it('should return groups correctly', () => {
     expect(test.groups).toEqual(thirdFixture.groups);
+  });
+
+  it('should return signs correctly', () => {
+    expect(test.signs).toEqual(thirdFixture.signs);
   });
 });
