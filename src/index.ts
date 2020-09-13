@@ -18,5 +18,4 @@ export { MainColor } from './types/enums/main-color.enum';
 export { Sign } from './types/enums/sign.enum';
 
 // Constatns
-export { interpretations, Interpretation } from './constants/interpretations';
 export { luscherColors, LuscherColor } from './constants/luscher-colors';

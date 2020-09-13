@@ -1,10 +1,10 @@
 import { MainColor } from './types/enums/main-color.enum';
 import { Sign } from './types/enums/sign.enum';
-import { interpretations } from './constants/interpretations';
 import { InterpretationSection } from './types/interpretation-section.interface';
 import { ColorGroups } from './types/color-groups.type';
 import { FunctionKeys } from './types/function-keys';
 import { validateSelection } from './helpers/validate-selection';
+import { getInterpretation } from './helpers/get-interpretation';
 
 export class SingleStageTest {
     colors: MainColor[];
@@ -15,14 +15,19 @@ export class SingleStageTest {
       this.colors = colors;
     }
 
-    interpret(): InterpretationSection[] {
+    async interpret(): Promise<InterpretationSection[]> {
+      const multiInterpretations = await getInterpretation('multi');
       const colorGroups = this.getGroups();
 
-      return Object.entries(colorGroups)
+      const interpretation = Object.entries(colorGroups)
         .map(([signString, colorGroup]): InterpretationSection => {
           const groupKey = colorGroup.join('') as FunctionKeys;
           const sign = signString as Sign;
-          const { title, [groupKey]: signInterpretation } = interpretations[sign];
+          const {
+            title,
+            // @ts-ignore (for jest tests)
+            [groupKey]: signInterpretation,
+          } = multiInterpretations[sign];
 
           return {
             title,
@@ -30,6 +35,8 @@ export class SingleStageTest {
             interpretation: [signInterpretation],
           };
         });
+
+      return interpretation;
     }
 
     getGroups(): ColorGroups {
