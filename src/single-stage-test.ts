@@ -5,6 +5,7 @@ import { ColorGroups } from './types/color-groups.type';
 import { FunctionKeys } from './types/function-keys';
 import { validateSelection } from './helpers/validate-selection';
 import { getInterpretation } from './helpers/get-interpretation';
+import { Translations } from './types/translations.interface';
 
 export class SingleStageTest {
     colors: MainColor[];
@@ -15,8 +16,8 @@ export class SingleStageTest {
       this.colors = colors;
     }
 
-    async interpret(): Promise<InterpretationSection[]> {
-      const multiInterpretations = await getInterpretation('multi');
+    async interpret(lang: keyof Translations<any> | 'multi' = 'multi'): Promise<InterpretationSection[]> {
+      const multiInterpretations = await getInterpretation(lang);
       const colorGroups = this.getGroups();
 
       const interpretation = Object.entries(colorGroups)
