@@ -34,6 +34,10 @@ describe('[Two stage] First fixture', () => {
   it('should return sign maps correctly', () => {
     expect(test.signMaps).toStrictEqual(firstFixture.signMaps);
   });
+
+  it('should return interpretation pairs correctly', () => {
+    expect(test.interpretationPairs).toStrictEqual(firstFixture.interpretationPairs);
+  });
 });
 
 describe('[Two stage] Second fixture', () => {
@@ -61,6 +65,14 @@ describe('[Two stage] Second fixture', () => {
 
   it('should return signs correctly', () => {
     expect(test.signs).toStrictEqual(secondFixture.signs);
+  });
+
+  it('should return sign maps correctly', () => {
+    expect(test.signMaps).toStrictEqual(secondFixture.signMaps);
+  });
+
+  it('should return interpretation pairs correctly', () => {
+    expect(test.interpretationPairs).toStrictEqual(secondFixture.interpretationPairs);
   });
 });
 
@@ -90,6 +102,14 @@ describe('[Two stage] Third fixture', () => {
   it('should return signs correctly', () => {
     expect(test.signs).toStrictEqual(thirdFixture.signs);
   });
+
+  it('should return sign maps correctly', () => {
+    expect(test.signMaps).toStrictEqual(thirdFixture.signMaps);
+  });
+
+  it('should return interpretation pairs correctly', () => {
+    expect(test.interpretationPairs).toStrictEqual(thirdFixture.interpretationPairs);
+  });
 });
 
 describe('[Two stage] Fourth fixture', () => {
@@ -117,5 +137,13 @@ describe('[Two stage] Fourth fixture', () => {
 
   it('should return signs correctly', () => {
     expect(test.signs).toStrictEqual(fourthFixture.signs);
+  });
+
+  it('should return sign maps correctly', () => {
+    expect(test.signMaps).toStrictEqual(fourthFixture.signMaps);
+  });
+
+  it('should return interpretation pairs correctly', () => {
+    expect(test.interpretationPairs).toStrictEqual(fourthFixture.interpretationPairs);
   });
 });

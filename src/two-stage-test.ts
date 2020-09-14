@@ -7,6 +7,7 @@ import { goodColors } from './constants/good-colors';
 import { ColorMap } from './types/color-map.type';
 import { InterpretationSection } from './types/interpretation-section.interface';
 import { SignMap } from './types/sign-map.type';
+import { FunctionKeys } from './types/function-keys';
 
 interface PsychologicalStateResult {
   anxietyLevels: ColorMap<1 | 2 | 3>;
@@ -14,13 +15,14 @@ interface PsychologicalStateResult {
 }
 
 export class TwoStageTest {
-  readonly selections: [MainColor[], MainColor[]]
-  readonly pairs: [MainColor, MainColor][]
-  readonly groups: [MainColor, MainColor?][][]
+  readonly selections: [MainColor[], MainColor[]];
+  readonly pairs: [MainColor, MainColor][];
+  readonly groups: [MainColor, MainColor?][][];
   readonly emotionalStates: [ColorMap<EmotionalState>, ColorMap<EmotionalState>] = [{}, {}];
   readonly anxietyLevels: [ColorMap<1 | 2 | 3>, ColorMap<1 | 2 | 3>] = [{}, {}];
   readonly signs: [ColorMap<[Sign, Sign?]>, ColorMap<[Sign, Sign?]>] = [{}, {}];
   readonly signMaps: [SignMap<MainColor[]>, SignMap<MainColor[]>];
+  readonly interpretationPairs: [SignMap<FunctionKeys[]>, SignMap<FunctionKeys[]>];
 
   constructor(
     firstSelection: MainColor[],
@@ -44,6 +46,7 @@ export class TwoStageTest {
     this.groups = this.getGroups();
     this.signs = this.getSigns();
     this.signMaps = this.getSignMaps();
+    this.interpretationPairs = this.getInterpretationPairs();
   }
 
   private getPsychologicalState(): [PsychologicalStateResult, PsychologicalStateResult] {
@@ -51,51 +54,6 @@ export class TwoStageTest {
     const second = this.getPsychologicalStateForSelection(this.selections[1]);
 
     return [first, second];
-  }
-
-  private getGroups(): [MainColor, MainColor?][][] {
-    const first: [MainColor, MainColor?][] = this.getGroupsForSelection(
-      this.selections[0],
-      this.emotionalStates[0],
-    );
-    const second: [MainColor, MainColor?][] = this.getGroupsForSelection(
-      this.selections[1],
-      this.emotionalStates[1],
-    );
-
-    return [first, second];
-  }
-
-  private getSigns(): [ColorMap<[Sign, Sign?]>, ColorMap<[Sign, Sign?]>] {
-    const first: ColorMap<[Sign, Sign?]> = this.getSignsForSelection(
-      this.selections[0],
-      this.groups[0],
-      this.emotionalStates[0],
-    );
-    const second: ColorMap<[Sign, Sign?]> = this.getSignsForSelection(
-      this.selections[1],
-      this.groups[1],
-      this.emotionalStates[1],
-    );
-
-    return [first, second];
-  }
-
-  private getSignMaps(): [SignMap<MainColor[]>, SignMap<MainColor[]>] {
-    const first: SignMap<MainColor[]> = this.getSignMapForSelection(
-      this.selections[0],
-      this.signs[0],
-    );
-    const second: SignMap<MainColor[]> = this.getSignMapForSelection(
-      this.selections[1],
-      this.signs[1],
-    );
-
-    return [first, second];
-  }
-
-  private getInterpretations(): [InterpretationSection[], InterpretationSection[]] {
-    return [[], []];
   }
 
   private getPsychologicalStateForSelection(selection: MainColor[]): PsychologicalStateResult {
@@ -136,6 +94,44 @@ export class TwoStageTest {
       anxietyLevels,
       emotionalStates,
     };
+  }
+
+  private getPairs(): [MainColor, MainColor][] {
+    const pairs: [MainColor, MainColor][] = [];
+    const [firstSelection, secondSelection] = this.selections;
+
+    firstSelection.forEach((color, index) => {
+      const firstColorIndex = secondSelection.indexOf(color);
+      const colorToCompareTo = firstSelection[index + 1];
+      const previousColor = secondSelection[firstColorIndex - 1];
+      const nextColor = secondSelection[firstColorIndex + 1];
+      const isPreviousMatched = firstColorIndex - 1 >= 0 && previousColor === colorToCompareTo;
+      const isNextMatched = firstColorIndex + 1 < secondSelection.length
+       && nextColor === colorToCompareTo;
+
+      if (index + 1 >= firstSelection.length) return pairs;
+
+      if (isPreviousMatched || isNextMatched) {
+        pairs.push([firstSelection[index], colorToCompareTo]);
+      }
+
+      return pairs;
+    });
+
+    return pairs;
+  }
+
+  private getGroups(): [MainColor, MainColor?][][] {
+    const first: [MainColor, MainColor?][] = this.getGroupsForSelection(
+      this.selections[0],
+      this.emotionalStates[0],
+    );
+    const second: [MainColor, MainColor?][] = this.getGroupsForSelection(
+      this.selections[1],
+      this.emotionalStates[1],
+    );
+
+    return [first, second];
   }
 
   private getGroupsForSelection(
@@ -185,6 +181,21 @@ export class TwoStageTest {
     });
 
     return groups;
+  }
+
+  private getSigns(): [ColorMap<[Sign, Sign?]>, ColorMap<[Sign, Sign?]>] {
+    const first: ColorMap<[Sign, Sign?]> = this.getSignsForSelection(
+      this.selections[0],
+      this.groups[0],
+      this.emotionalStates[0],
+    );
+    const second: ColorMap<[Sign, Sign?]> = this.getSignsForSelection(
+      this.selections[1],
+      this.groups[1],
+      this.emotionalStates[1],
+    );
+
+    return [first, second];
   }
 
   private getSignsForSelection(
@@ -252,6 +263,19 @@ export class TwoStageTest {
     return signs;
   }
 
+  private getSignMaps(): [SignMap<MainColor[]>, SignMap<MainColor[]>] {
+    const first: SignMap<MainColor[]> = this.getSignMapForSelection(
+      this.selections[0],
+      this.signs[0],
+    );
+    const second: SignMap<MainColor[]> = this.getSignMapForSelection(
+      this.selections[1],
+      this.signs[1],
+    );
+
+    return [first, second];
+  }
+
   private getSignMapForSelection(
     selection: MainColor[],
     signs: ColorMap<[Sign, Sign?]>,
@@ -295,40 +319,46 @@ export class TwoStageTest {
     return signMap;
   }
 
-  private getInterpretationForSelection(
-    groups: [MainColor, MainColor?][],
-    signs: ColorMap<[Sign, Sign?]>,
-  ): InterpretationSection[] {
-    const interpretation: InterpretationSection[] = [];
+  private getInterpretationPairs(): [
+    SignMap<FunctionKeys[]>,
+    SignMap<FunctionKeys[]>
+    ] {
+    const first = this.getInterpretationPairsForSelection(this.signMaps[0]);
+    const second = this.getInterpretationPairsForSelection(this.signMaps[1]);
 
-    return interpretation;
+    return [first, second];
   }
 
-  private getPairs(): [MainColor, MainColor][] {
-    const pairs: [MainColor, MainColor][] = [];
-    const [firstSelection, secondSelection] = this.selections;
+  private getInterpretationPairsForSelection(
+    signMap: SignMap<MainColor[]>,
+  ): SignMap<FunctionKeys[]> {
+    const initialInterpretationPairs: SignMap<FunctionKeys[]> = {
+      [Sign.PLUS]: [],
+      [Sign.MINUS]: [],
+      [Sign.ASTERISK]: [],
+      [Sign.EQUAL]: [],
+    };
 
-    firstSelection.forEach((color, index) => {
-      const firstColorIndex = secondSelection.indexOf(color);
-      const colorToCompareTo = firstSelection[index + 1];
-      const previousColor = secondSelection[firstColorIndex - 1];
-      const nextColor = secondSelection[firstColorIndex + 1];
-      const isPreviousMatched = firstColorIndex - 1 >= 0 && previousColor === colorToCompareTo;
-      const isNextMatched = firstColorIndex + 1 < secondSelection.length
-       && nextColor === colorToCompareTo;
+    const interpretationPairs = Object.entries(signMap).reduce((map, [sign, colors]) => {
+      if (colors.length === 1) {
+        map[sign as Sign].push(colors[0].toString() as FunctionKeys);
 
-      if (index + 1 >= firstSelection.length) return pairs;
-
-      if (isPreviousMatched || isNextMatched) {
-        pairs.push([firstSelection[index], colorToCompareTo]);
+        return map;
       }
 
-      return pairs;
-    });
+      const [emptyString, ...interpretations] = colors.map<FunctionKeys>((color, index) => {
+        if (index === 0) return '' as FunctionKeys;
 
-    return pairs;
+        return [colors[index - 1], colors[index]].join('') as FunctionKeys;
+      });
+
+      // eslint-disable-next-line no-param-reassign
+      map[sign as Sign] = interpretations;
+
+      return map;
+    }, initialInterpretationPairs);
+
+    return interpretationPairs;
   }
 }
-
-const test = new TwoStageTest([0, 6, 3, 7, 1, 5, 4, 2], [3, 7, 2, 1, 5, 0, 4, 6]);
 

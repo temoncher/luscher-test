@@ -1,9 +1,10 @@
 import { EmotionalState } from '@/types/enums/emotional-state.enum';
 import { Sign } from '@/types/enums/sign.enum';
 import { MainColor } from '@/types/enums/main-color.enum';
-import { ColorResult } from '@/types/color-result.interface';
 import { ColorMap } from '@/types/color-map.type';
+import { SignMap } from '@/types/sign-map.type';
 import { TwoStageFixture } from './two-stage-fixture.interface';
+import { FunctionKeys } from '@/types/function-keys';
 
 const selections: [MainColor[], MainColor[]] = [
   [5, 7, 2, 3, 4, 0, 6, 1],
@@ -69,7 +70,35 @@ const signs: [ColorMap<[Sign, Sign?]>, ColorMap<[Sign, Sign?]>] = [
   },
 ];
 
-const result: [ColorResult[], ColorResult[]] = [[], []];
+const signMaps: [SignMap<MainColor[]>, SignMap<MainColor[]>] = [
+  {
+    [Sign.PLUS]: [5, 7],
+    [Sign.ASTERISK]: [7, 2],
+    [Sign.EQUAL]: [3, 4, 0, 6],
+    [Sign.MINUS]: [1],
+  },
+  {
+    [Sign.PLUS]: [4, 6, 7],
+    [Sign.ASTERISK]: [7, 2],
+    [Sign.EQUAL]: [0, 5],
+    [Sign.MINUS]: [1, 3],
+  },
+];
+
+const interpretationPairs: [SignMap<FunctionKeys[]>, SignMap<FunctionKeys[]>] = [
+  {
+    [Sign.PLUS]: ['57'],
+    [Sign.ASTERISK]: ['72'],
+    [Sign.EQUAL]: ['34', '40', '06'],
+    [Sign.MINUS]: ['1'],
+  },
+  {
+    [Sign.PLUS]: ['46', '67'],
+    [Sign.ASTERISK]: ['72'],
+    [Sign.EQUAL]: ['05'],
+    [Sign.MINUS]: ['13'],
+  },
+];
 
 export const secondFixture: TwoStageFixture = {
   selections,
@@ -78,5 +107,6 @@ export const secondFixture: TwoStageFixture = {
   pairs,
   groups,
   signs,
-  result,
+  signMaps,
+  interpretationPairs,
 };
