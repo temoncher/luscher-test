@@ -12,23 +12,27 @@ describe('[Two stage] First fixture', () => {
   });
 
   it('should return anxiety levels correctly', () => {
-    expect(test.anxietyLevels).toEqual(firstFixture.anxietyLevels);
+    expect(test.anxietyLevels).toStrictEqual(firstFixture.anxietyLevels);
   });
 
   it('should return emotional state correctly', () => {
-    expect(test.emotionalStates).toEqual(firstFixture.emotionalStates);
+    expect(test.emotionalStates).toStrictEqual(firstFixture.emotionalStates);
   });
 
   it('should return pairs correctly', () => {
-    expect(test.pairs).toEqual(firstFixture.pairs);
+    expect(test.pairs).toStrictEqual(firstFixture.pairs);
   });
 
   it('should return groups correctly', () => {
-    expect(test.groups).toEqual(firstFixture.groups);
+    expect(test.groups).toStrictEqual(firstFixture.groups);
   });
 
   it('should return signs correctly', () => {
-    expect(test.signs).toEqual(firstFixture.signs);
+    expect(test.signs).toStrictEqual(firstFixture.signs);
+  });
+
+  it('should return sign maps correctly', () => {
+    expect(test.signMaps).toStrictEqual(firstFixture.signMaps);
   });
 });
 
@@ -40,23 +44,23 @@ describe('[Two stage] Second fixture', () => {
   });
 
   it('should return anxiety levels correctly', () => {
-    expect(test.anxietyLevels).toEqual(secondFixture.anxietyLevels);
+    expect(test.anxietyLevels).toStrictEqual(secondFixture.anxietyLevels);
   });
 
   it('should return emotional state correctly', () => {
-    expect(test.emotionalStates).toEqual(secondFixture.emotionalStates);
+    expect(test.emotionalStates).toStrictEqual(secondFixture.emotionalStates);
   });
 
   it('should return pairs correctly', () => {
-    expect(test.pairs).toEqual(secondFixture.pairs);
+    expect(test.pairs).toStrictEqual(secondFixture.pairs);
   });
 
   it('should return groups correctly', () => {
-    expect(test.groups).toEqual(secondFixture.groups);
+    expect(test.groups).toStrictEqual(secondFixture.groups);
   });
 
   it('should return signs correctly', () => {
-    expect(test.signs).toEqual(secondFixture.signs);
+    expect(test.signs).toStrictEqual(secondFixture.signs);
   });
 });
 
@@ -68,23 +72,23 @@ describe('[Two stage] Third fixture', () => {
   });
 
   it('should return anxiety levels correctly', () => {
-    expect(test.anxietyLevels).toEqual(thirdFixture.anxietyLevels);
+    expect(test.anxietyLevels).toStrictEqual(thirdFixture.anxietyLevels);
   });
 
   it('should return emotional state correctly', () => {
-    expect(test.emotionalStates).toEqual(thirdFixture.emotionalStates);
+    expect(test.emotionalStates).toStrictEqual(thirdFixture.emotionalStates);
   });
 
   it('should return pairs correctly', () => {
-    expect(test.pairs).toEqual(thirdFixture.pairs);
+    expect(test.pairs).toStrictEqual(thirdFixture.pairs);
   });
 
   it('should return groups correctly', () => {
-    expect(test.groups).toEqual(thirdFixture.groups);
+    expect(test.groups).toStrictEqual(thirdFixture.groups);
   });
 
   it('should return signs correctly', () => {
-    expect(test.signs).toEqual(thirdFixture.signs);
+    expect(test.signs).toStrictEqual(thirdFixture.signs);
   });
 });
 
@@ -96,22 +100,22 @@ describe('[Two stage] Fourth fixture', () => {
   });
 
   it('should return anxiety levels correctly', () => {
-    expect(test.anxietyLevels).toEqual(fourthFixture.anxietyLevels);
+    expect(test.anxietyLevels).toStrictEqual(fourthFixture.anxietyLevels);
   });
 
   it('should return emotional state correctly', () => {
-    expect(test.emotionalStates).toEqual(fourthFixture.emotionalStates);
+    expect(test.emotionalStates).toStrictEqual(fourthFixture.emotionalStates);
   });
 
   it('should return pairs correctly', () => {
-    expect(test.pairs).toEqual(fourthFixture.pairs);
+    expect(test.pairs).toStrictEqual(fourthFixture.pairs);
   });
 
   it('should return groups correctly', () => {
-    expect(test.groups).toEqual(fourthFixture.groups);
+    expect(test.groups).toStrictEqual(fourthFixture.groups);
   });
 
   it('should return signs correctly', () => {
-    expect(test.signs).toEqual(fourthFixture.signs);
+    expect(test.signs).toStrictEqual(fourthFixture.signs);
   });
 });

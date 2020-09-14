@@ -3,7 +3,7 @@ export { SingleStageTest } from './single-stage-test';
 export { TwoStageTest } from './two-stage-test';
 
 // Models
-export { ColorGroups } from './types/color-groups.type';
+export { SignMap as ColorGroups } from './types/sign-map.type';
 export { ColorResult } from './types/color-result.interface';
 export { FunctionKeys } from './types/function-keys';
 export { InterpretationSection } from './types/interpretation-section.interface';

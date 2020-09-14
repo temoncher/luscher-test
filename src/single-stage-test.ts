@@ -1,7 +1,7 @@
 import { MainColor } from './types/enums/main-color.enum';
 import { Sign } from './types/enums/sign.enum';
 import { InterpretationSection } from './types/interpretation-section.interface';
-import { ColorGroups } from './types/color-groups.type';
+import { SignMap } from './types/sign-map.type';
 import { FunctionKeys } from './types/function-keys';
 import { validateSelection } from './helpers/validate-selection';
 import { getInterpretation } from './helpers/get-interpretation';
@@ -40,8 +40,8 @@ export class SingleStageTest {
       return interpretation;
     }
 
-    getGroups(): ColorGroups {
-      const initalGroups: ColorGroups = {
+    getGroups(): SignMap<MainColor[]> {
+      const initalGroups: SignMap<MainColor[]> = {
         [Sign.PLUS]: [],
         [Sign.ASTERISK]: [],
         [Sign.EQUAL]: [],
