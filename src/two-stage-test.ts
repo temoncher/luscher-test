@@ -8,6 +8,9 @@ import { ColorMap } from './types/color-map.type';
 import { InterpretationSection } from './types/interpretation-section.interface';
 import { SignMap } from './types/sign-map.type';
 import { FunctionKeys } from './types/function-keys';
+import { getInterpretation } from './helpers/get-interpretation';
+import { Interpretation } from './types/interpretation.type';
+import { LuscherFunction } from './types/luscher-function.interface';
 
 interface PsychologicalStateResult {
   anxietyLevels: ColorMap<1 | 2 | 3>;
@@ -47,6 +50,40 @@ export class TwoStageTest {
     this.signs = this.getSigns();
     this.signMaps = this.getSignMaps();
     this.interpretationPairs = this.getInterpretationPairs();
+  }
+
+  async getInterpretation(): Promise<[InterpretationSection[], InterpretationSection[]]> {
+    const interpretations = await getInterpretation('multi');
+
+    const first = this.getInterpretationForSelection(
+      this.interpretationPairs[0],
+      interpretations,
+    );
+    const second = this.getInterpretationForSelection(
+      this.interpretationPairs[1],
+      interpretations,
+    );
+
+    return [first, second];
+  }
+
+  private getInterpretationForSelection(
+    interpretationPairs: SignMap<FunctionKeys[]>,
+    interpretations: SignMap<Interpretation>,
+  ): InterpretationSection[] {
+    const interpretation: InterpretationSection[] = Object.entries(interpretationPairs)
+      .map(([sign, pairs]) => {
+        const signInterpretationSource = interpretations[sign as Sign];
+        const signInterpretation: LuscherFunction[] = pairs
+          .map((pair) => signInterpretationSource[pair]);
+
+        return {
+          title: signInterpretationSource.title,
+          interpretation: signInterpretation,
+        };
+      });
+
+    return interpretation;
   }
 
   private getPsychologicalState(): [PsychologicalStateResult, PsychologicalStateResult] {
@@ -361,4 +398,3 @@ export class TwoStageTest {
     return interpretationPairs;
   }
 }
-

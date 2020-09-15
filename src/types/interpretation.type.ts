@@ -8,7 +8,3 @@ export type Interpretation = {
  } & {
    [key in FunctionKeys]: LuscherFunction;
  };
-
-export type Interpretations = {
-  [key in Sign]: Interpretation;
-}

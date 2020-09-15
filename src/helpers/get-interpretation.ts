@@ -1,8 +1,11 @@
-import { Interpretations } from '@/types/interpretations';
+import { Interpretation } from '@/types/interpretation.type';
 import { Translations } from '@/types/translations.interface';
 import { Sign } from '@/types/enums/sign.enum';
+import { SignMap } from '@/types/sign-map.type';
 
-export const getInterpretation = async (lang: keyof Translations<any> | 'multi'): Promise<Interpretations> => {
+export const getInterpretation = async (
+  lang: keyof Translations<any> | 'multi',
+): Promise<SignMap<Interpretation>> => {
   const [
     plusFunctionJson,
     asteriskFunctionJson,

@@ -32,7 +32,6 @@ export class SingleStageTest {
 
           return {
             title,
-            sign,
             interpretation: [signInterpretation],
           };
         });

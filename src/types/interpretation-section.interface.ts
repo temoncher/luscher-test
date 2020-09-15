@@ -4,6 +4,5 @@ import { Translations } from './translations.interface';
 
 export interface InterpretationSection {
   title: Translations<string>;
-  interpretation: [LuscherFunction, LuscherFunction?, LuscherFunction?];
-  sign: Sign;
+  interpretation: LuscherFunction[];
 }
