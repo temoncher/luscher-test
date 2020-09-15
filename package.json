@@ -5,13 +5,13 @@
   "main": "dist/index.js",
   "types": "dist/types/index.d.ts",
   "scripts": {
-    "start": "node dist/lib/index.js",
+    "start": "node dist/index.js",
     "dev": "webpack --watch",
     "build": "rimraf dist && webpack",
     "lint": "eslint src/**/*.ts unit/**/*.ts",
     "unit": "jest",
     "unit:watch": "jest --watchAll",
-    "updateLink": "npm run build && npm rm my-lib -g && npm link",
+    "updateLink": "npm run build && npm rm luscher-test -g && npm link",
     "release": "np"
   },
   "devDependencies": {
