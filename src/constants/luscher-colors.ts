@@ -1,49 +1,50 @@
+import { ColorHex } from '@/types/enums/color-hex.enum';
 import { MainColor } from '@/types/enums/main-color.enum';
 
 export interface LuscherColor {
-  hex: string;
+  hex: ColorHex;
   id: keyof typeof MainColor;
   index: MainColor;
 }
 
 export const luscherColors: LuscherColor[] = [
   {
-    hex: '',
+    hex: ColorHex.GRAY,
     id: 'GRAY',
     index: MainColor.GRAY,
   },
   {
-    hex: '',
+    hex: ColorHex.BLUE,
     id: 'BLUE',
     index: MainColor.BLUE,
   },
   {
-    hex: '',
+    hex: ColorHex.GREEN,
     id: 'GREEN',
     index: MainColor.GREEN,
   },
   {
-    hex: '',
+    hex: ColorHex.RED,
     id: 'RED',
     index: MainColor.RED,
   },
   {
-    hex: '',
+    hex: ColorHex.YELLOW,
     id: 'YELLOW',
     index: MainColor.YELLOW,
   },
   {
-    hex: '',
+    hex: ColorHex.PURPLE,
     id: 'PURPLE',
     index: MainColor.PURPLE,
   },
   {
-    hex: '',
+    hex: ColorHex.BROWN,
     id: 'BROWN',
     index: MainColor.BROWN,
   },
   {
-    hex: '',
+    hex: ColorHex.BLACK,
     id: 'BLACK',
     index: MainColor.BLACK,
   },

@@ -11,6 +11,7 @@ import { FunctionKeys } from './types/function-keys';
 import { getInterpretation } from './helpers/get-interpretation';
 import { Interpretation } from './types/interpretation.type';
 import { LuscherFunction } from './types/luscher-function.interface';
+import { Translations } from './types/translations.interface';
 
 interface PsychologicalStateResult {
   anxietyLevels: ColorMap<1 | 2 | 3>;
@@ -52,8 +53,11 @@ export class TwoStageTest {
     this.interpretationPairs = this.getInterpretationPairs();
   }
 
-  async getInterpretation(): Promise<[InterpretationSection[], InterpretationSection[]]> {
-    const interpretations = await getInterpretation('multi');
+  async getInterpretation(lang: keyof Translations<any> | 'multi' = 'en'): Promise<[
+    InterpretationSection[],
+    InterpretationSection[]
+  ]> {
+    const interpretations = await getInterpretation(lang);
 
     const first = this.getInterpretationForSelection(
       this.interpretationPairs[0],
