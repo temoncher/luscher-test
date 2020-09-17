@@ -1,9 +1,10 @@
 import { SingleStageTest } from '@/single-stage-test';
+import { firstFixture } from './fixtures/single-stage-test/first-fixture';
 
-describe('Single stage test', () => {
-  it('should work', () => {
-    const test = new SingleStageTest([0, 1, 2, 3, 4, 5, 6, 7]);
+describe('[Single stage] First fixture', () => {
+  it('should return interpretation correctly', async () => {
+    const test = new SingleStageTest(firstFixture.selection);
 
-    expect(test).toBeTruthy();
+    expect(test.interpret()).resolves.toStrictEqual(firstFixture.interpretation);
   });
 });
