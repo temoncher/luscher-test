@@ -24,6 +24,7 @@ export class TwoStageTest {
   readonly groups: [MainColor, MainColor?][][];
   readonly emotionalStates: [ColorMap<EmotionalState>, ColorMap<EmotionalState>] = [{}, {}];
   readonly anxietyLevels: [ColorMap<1 | 2 | 3>, ColorMap<1 | 2 | 3>] = [{}, {}];
+  readonly totalAnxietyLevel: [number, number];
   readonly signs: [ColorMap<[Sign, Sign?]>, ColorMap<[Sign, Sign?]>] = [{}, {}];
   readonly signMaps: [SignMap<MainColor[]>, SignMap<MainColor[]>];
   readonly interpretationPairs: [SignMap<FunctionKeys[]>, SignMap<FunctionKeys[]>];
@@ -47,6 +48,7 @@ export class TwoStageTest {
       firstEmotionalStates.anxietyLevels,
       secondEmotionalStates.anxietyLevels,
     ];
+    this.totalAnxietyLevel = this.getTotalAnxietyLevel();
     this.groups = this.getGroups();
     this.signs = this.getSigns();
     this.signMaps = this.getSignMaps();
@@ -135,6 +137,26 @@ export class TwoStageTest {
       anxietyLevels,
       emotionalStates,
     };
+  }
+
+  private getTotalAnxietyLevel(): [number, number] {
+    const first = this.getTotalAnxietyLevelForSelection(this.anxietyLevels[0]);
+    const second = this.getTotalAnxietyLevelForSelection(this.anxietyLevels[1]);
+
+    return [first, second];
+  }
+
+  private getTotalAnxietyLevelForSelection(selectionAnxietyLevels: ColorMap<1 | 2 | 3>): number {
+    const initAnxietyLevel: number = 0;
+
+    const totalAnxietyLevel = Object.values(selectionAnxietyLevels)
+      .reduce((total, currentAnxietyLevel) => {
+        if (total && currentAnxietyLevel) return total + currentAnxietyLevel;
+
+        return total;
+      }, initAnxietyLevel);
+
+    return totalAnxietyLevel;
   }
 
   private getPairs(): [MainColor, MainColor][] {
