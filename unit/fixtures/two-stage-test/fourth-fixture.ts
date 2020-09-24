@@ -27,6 +27,8 @@ const anxietyLevels: [ColorMap<1 | 2 | 3>, ColorMap<1 | 2 | 3>] = [
   },
 ];
 
+const totalAnxietyLevel: [number, number] = [10, 9];
+
 const emotionalStates: [ColorMap<EmotionalState>, ColorMap<EmotionalState>] = [
   {
     0: EmotionalState.COMPENSATION,
@@ -108,6 +110,7 @@ const interpretationPairs: [SignMap<FunctionKeys[]>, SignMap<FunctionKeys[]>] = 
 export const fourthFixture: TwoStageFixture = {
   selections,
   anxietyLevels,
+  totalAnxietyLevel,
   emotionalStates,
   pairs,
   groups,

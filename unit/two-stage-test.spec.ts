@@ -15,6 +15,10 @@ describe('[Two stage] First fixture', () => {
     expect(test.anxietyLevels).toStrictEqual(firstFixture.anxietyLevels);
   });
 
+  it('should return total anxiety level correctly', () => {
+    expect(test.totalAnxietyLevel).toStrictEqual(firstFixture.totalAnxietyLevel);
+  });
+
   it('should return emotional state correctly', () => {
     expect(test.emotionalStates).toStrictEqual(firstFixture.emotionalStates);
   });
@@ -49,6 +53,10 @@ describe('[Two stage] Second fixture', () => {
 
   it('should return anxiety levels correctly', () => {
     expect(test.anxietyLevels).toStrictEqual(secondFixture.anxietyLevels);
+  });
+
+  it('should return total anxiety level correctly', () => {
+    expect(test.totalAnxietyLevel).toStrictEqual(secondFixture.totalAnxietyLevel);
   });
 
   it('should return emotional state correctly', () => {
@@ -87,6 +95,10 @@ describe('[Two stage] Third fixture', () => {
     expect(test.anxietyLevels).toStrictEqual(thirdFixture.anxietyLevels);
   });
 
+  it('should return total anxiety level correctly', () => {
+    expect(test.totalAnxietyLevel).toStrictEqual(thirdFixture.totalAnxietyLevel);
+  });
+
   it('should return emotional state correctly', () => {
     expect(test.emotionalStates).toStrictEqual(thirdFixture.emotionalStates);
   });
@@ -121,6 +133,10 @@ describe('[Two stage] Fourth fixture', () => {
 
   it('should return anxiety levels correctly', () => {
     expect(test.anxietyLevels).toStrictEqual(fourthFixture.anxietyLevels);
+  });
+
+  it('should return total anxiety level correctly', () => {
+    expect(test.totalAnxietyLevel).toStrictEqual(fourthFixture.totalAnxietyLevel);
   });
 
   it('should return emotional state correctly', () => {

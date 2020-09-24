@@ -15,6 +15,7 @@ export { Translations } from './types/translations.interface';
 // Enums
 export { ColorHex } from './types/enums/color-hex.enum';
 export { EmotionalState } from './types/enums/emotional-state.enum';
+export { InterpretationLanguage } from './types/enums/interpretation-language.enum';
 export { MainColor } from './types/enums/main-color.enum';
 export { Sign } from './types/enums/sign.enum';
 
