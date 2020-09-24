@@ -8,6 +8,7 @@ import { FunctionKeys } from '@/types/function-keys';
 export interface TwoStageFixture {
   selections: [MainColor[], MainColor[]];
   anxietyLevels: [ColorMap<1 | 2 | 3>, ColorMap<1 | 2 | 3>];
+  totalAnxietyLevel: [number, number];
   emotionalStates: [ColorMap<EmotionalState>, ColorMap<EmotionalState>];
   pairs: [MainColor, MainColor][];
   groups: [MainColor, MainColor?][][];

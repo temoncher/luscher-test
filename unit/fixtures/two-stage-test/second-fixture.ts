@@ -3,8 +3,8 @@ import { Sign } from '@/types/enums/sign.enum';
 import { MainColor } from '@/types/enums/main-color.enum';
 import { ColorMap } from '@/types/color-map.type';
 import { SignMap } from '@/types/sign-map.type';
-import { TwoStageFixture } from './two-stage-fixture.interface';
 import { FunctionKeys } from '@/types/function-keys';
+import { TwoStageFixture } from './two-stage-fixture.interface';
 
 const selections: [MainColor[], MainColor[]] = [
   [5, 7, 2, 3, 4, 0, 6, 1],
@@ -23,6 +23,8 @@ const anxietyLevels: [ColorMap<1 | 2 | 3>, ColorMap<1 | 2 | 3>] = [
     3: 3,
   },
 ];
+
+const totalAnxietyLevel: [number, number] = [5, 8];
 
 const emotionalStates: [ColorMap<EmotionalState>, ColorMap<EmotionalState>] = [
   {
@@ -103,6 +105,7 @@ const interpretationPairs: [SignMap<FunctionKeys[]>, SignMap<FunctionKeys[]>] = 
 export const secondFixture: TwoStageFixture = {
   selections,
   anxietyLevels,
+  totalAnxietyLevel,
   emotionalStates,
   pairs,
   groups,

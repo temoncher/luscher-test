@@ -151,7 +151,7 @@ export class TwoStageTest {
 
     const totalAnxietyLevel = Object.values(selectionAnxietyLevels)
       .reduce((total, currentAnxietyLevel) => {
-        if (total && currentAnxietyLevel) return total + currentAnxietyLevel;
+        if (typeof total !== 'undefined' && currentAnxietyLevel) return total + currentAnxietyLevel;
 
         return total;
       }, initAnxietyLevel);
