@@ -11,7 +11,6 @@ import { FunctionKeys } from './types/function-keys';
 import { getInterpretation } from './helpers/get-interpretation';
 import { Interpretation } from './types/interpretation.type';
 import { LuscherFunction } from './types/luscher-function.interface';
-import { Translations } from './types/translations.interface';
 import { InterpretationLanguage } from './types/enums/interpretation-language.enum';
 
 interface PsychologicalStateResult {

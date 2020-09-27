@@ -11,6 +11,7 @@ export { LuscherFunction } from './types/luscher-function.interface';
 export { MinusFunction } from './types/minus-function.interface';
 export { SignMap } from './types/sign-map.type';
 export { Translations } from './types/translations.interface';
+export { InterpretationText } from './types/interpretation-text.type';
 
 // Enums
 export { ColorHex } from './types/enums/color-hex.enum';
