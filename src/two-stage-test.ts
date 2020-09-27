@@ -233,13 +233,13 @@ export class TwoStageTest {
         return;
       }
 
-      if (isNextAlreadyInPair || !nextColor) {
+      if (isNextAlreadyInPair || typeof nextColor === 'undefined') {
         groups.push([color]);
 
         return;
       }
 
-      if (!isEmotional && !isNextEmotional) {
+      if ((!isEmotional && !isNextEmotional) || typeof selection[index + 2] === 'undefined') {
         groups.push([color, nextColor]);
       }
     });
@@ -310,6 +310,14 @@ export class TwoStageTest {
       if (signs[color]) return;
 
       const equalGroup = groups.find((group) => group.includes(color));
+
+      const hasAsterisk = Boolean(equalGroup?.find((equalGroupColor) => {
+        if (typeof equalGroupColor === 'undefined') return false;
+
+        return signs[equalGroupColor]?.includes(Sign.ASTERISK);
+      }));
+
+      if (hasAsterisk) return;
 
       equalGroup?.forEach((groupColor) => {
         if (typeof groupColor === 'undefined') return;
