@@ -4,7 +4,7 @@ import { Sign } from '@/types/enums/sign.enum';
 import { SignMap } from '@/types/sign-map.type';
 
 export const getInterpretation = async (
-  lang: keyof Translations<any> | 'multi',
+  lang: keyof Translations<unknown> | 'multi',
 ): Promise<SignMap<Interpretation>> => {
   const [
     plusFunctionJson,

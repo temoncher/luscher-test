@@ -1,7 +1,7 @@
 import { Translations } from './translations.interface';
-import { MinusFunctionInterpretation } from './minus-function-interpretation.interface';
+import { MinusFunction } from './minus-function.interface';
 
-export interface LuscherFunction extends Translations<string | MinusFunctionInterpretation> {
+export interface LuscherFunction extends Translations<string | MinusFunction<string>> {
   asterisks?: number;
   percentage?: number;
 }

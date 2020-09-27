@@ -1,4 +1,5 @@
-export interface Translations<T> {
-  ru: T;
-  en: T;
+import { InterpretationLanguage } from './enums/interpretation-language.enum';
+
+export type Translations<T> = {
+  [key in InterpretationLanguage]: T
 }
