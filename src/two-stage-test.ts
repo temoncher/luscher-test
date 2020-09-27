@@ -79,6 +79,7 @@ export class TwoStageTest {
     interpretations: SignMap<Interpretation>,
   ): InterpretationSection[] {
     const interpretation: InterpretationSection[] = Object.entries(interpretationPairs)
+      .filter(([, pairs]) => Boolean(pairs.length))
       .map(([sign, pairs]) => {
         const signInterpretationSource = interpretations[sign as Sign];
         const signInterpretation: LuscherFunction[] = pairs
