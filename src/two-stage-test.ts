@@ -12,6 +12,7 @@ import { getInterpretation } from './helpers/get-interpretation';
 import { Interpretation } from './types/interpretation.type';
 import { LuscherFunction } from './types/luscher-function.interface';
 import { InterpretationLanguage } from './types/enums/interpretation-language.enum';
+import { AnxietyLevelInterpretation } from './types/anxiety-level-interpretation.type';
 
 interface PsychologicalStateResult {
   anxietyLevels: ColorMap<1 | 2 | 3>;
@@ -25,6 +26,7 @@ export class TwoStageTest {
   readonly emotionalStates: [ColorMap<EmotionalState>, ColorMap<EmotionalState>] = [{}, {}];
   readonly anxietyLevels: [ColorMap<1 | 2 | 3>, ColorMap<1 | 2 | 3>] = [{}, {}];
   readonly totalAnxietyLevel: [number, number];
+  readonly anxietyLevelInterpretation: AnxietyLevelInterpretation;
   readonly signs: [ColorMap<[Sign, Sign?]>, ColorMap<[Sign, Sign?]>] = [{}, {}];
   readonly signMaps: [SignMap<MainColor[]>, SignMap<MainColor[]>];
   readonly interpretationPairs: [SignMap<FunctionKeys[]>, SignMap<FunctionKeys[]>];
@@ -49,6 +51,7 @@ export class TwoStageTest {
       secondEmotionalStates.anxietyLevels,
     ];
     this.totalAnxietyLevel = this.getTotalAnxietyLevel();
+    this.anxietyLevelInterpretation = this.getAnxietyLevelInterpretation();
     this.groups = this.getGroups();
     this.signs = this.getSigns();
     this.signMaps = this.getSignMaps();
@@ -158,6 +161,49 @@ export class TwoStageTest {
       }, initAnxietyLevel);
 
     return totalAnxietyLevel;
+  }
+
+  private getAnxietyLevelInterpretation(): AnxietyLevelInterpretation {
+    switch (this.totalAnxietyLevel[1]) {
+    case 0:
+    case 1:
+    case 2:
+      return {
+        ru: 'незначительная тревожность',
+        en: 'slight anxiety',
+      };
+
+    case 3:
+    case 4:
+    case 5:
+    case 6:
+      return {
+        ru: 'эмоциональная напряженность',
+        en: 'emotional tension',
+      };
+
+    case 7:
+    case 8:
+    case 9:
+    case 10:
+      return {
+        ru: 'состояние дезадаптации',
+        en: 'state of maladjustment',
+      };
+
+    case 11:
+    case 12:
+      return {
+        ru: 'психологический и физиологический стресс',
+        en: 'psychological and physiological stress',
+      };
+
+    default:
+      return {
+        ru: '',
+        en: '',
+      };
+    }
   }
 
   private getPairs(): [MainColor, MainColor][] {
@@ -433,3 +479,8 @@ export class TwoStageTest {
     return interpretationPairs;
   }
 }
+
+const test = new TwoStageTest([1, 4, 7, 3, 6, 5, 0, 2],
+  [4, 1, 3, 6, 5, 2, 7, 0]);
+
+console.log(test.anxietyLevelInterpretation);
