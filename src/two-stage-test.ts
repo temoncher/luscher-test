@@ -12,7 +12,7 @@ import { getInterpretation } from './helpers/get-interpretation';
 import { Interpretation } from './types/interpretation.type';
 import { LuscherFunction } from './types/luscher-function.interface';
 import { InterpretationLanguage } from './types/enums/interpretation-language.enum';
-import { AnxietyLevelInterpretation } from './types/anxiety-level-interpretation.type';
+import { Translations } from './types/translations.interface';
 
 interface PsychologicalStateResult {
   anxietyLevels: ColorMap<1 | 2 | 3>;
@@ -26,7 +26,7 @@ export class TwoStageTest {
   readonly emotionalStates: [ColorMap<EmotionalState>, ColorMap<EmotionalState>] = [{}, {}];
   readonly anxietyLevels: [ColorMap<1 | 2 | 3>, ColorMap<1 | 2 | 3>] = [{}, {}];
   readonly totalAnxietyLevel: [number, number];
-  readonly anxietyLevelInterpretation: AnxietyLevelInterpretation;
+  readonly anxietyLevelInterpretation: Translations<string>;
   readonly signs: [ColorMap<[Sign, Sign?]>, ColorMap<[Sign, Sign?]>] = [{}, {}];
   readonly signMaps: [SignMap<MainColor[]>, SignMap<MainColor[]>];
   readonly interpretationPairs: [SignMap<FunctionKeys[]>, SignMap<FunctionKeys[]>];
@@ -163,46 +163,36 @@ export class TwoStageTest {
     return totalAnxietyLevel;
   }
 
-  private getAnxietyLevelInterpretation(): AnxietyLevelInterpretation {
-    switch (this.totalAnxietyLevel[1]) {
-    case 0:
-    case 1:
-    case 2:
+  private getAnxietyLevelInterpretation(): Translations<string> {
+    const [, total] = this.totalAnxietyLevel;
+
+    switch (true) {
+    case total < 3:
       return {
         ru: 'незначительная тревожность',
         en: 'slight anxiety',
       };
 
-    case 3:
-    case 4:
-    case 5:
-    case 6:
+    case total < 7:
       return {
         ru: 'эмоциональная напряженность',
         en: 'emotional tension',
       };
 
-    case 7:
-    case 8:
-    case 9:
-    case 10:
+    case total < 11:
       return {
         ru: 'состояние дезадаптации',
         en: 'state of maladjustment',
       };
 
-    case 11:
-    case 12:
+    case total < 12:
       return {
         ru: 'психологический и физиологический стресс',
         en: 'psychological and physiological stress',
       };
 
     default:
-      return {
-        ru: '',
-        en: '',
-      };
+      throw new Error('Something went wrong!');
     }
   }
 
