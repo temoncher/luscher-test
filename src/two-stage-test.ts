@@ -124,7 +124,7 @@ export class TwoStageTest {
         anxietyLevels[color] = (3 - index) as 1 | 2 | 3;
       }
 
-      if (lastCompensationIndex && lastCompensationIndex >= index) {
+      if (lastCompensationIndex !== null && lastCompensationIndex >= index) {
         emotionalStates[color] = EmotionalState.COMPENSATION;
       }
 
@@ -341,7 +341,7 @@ export class TwoStageTest {
     const asteriskGroup = groups.find((group) => group.includes(firstColorWithoutSign));
 
     asteriskGroup?.forEach((color) => {
-      if (typeof color === 'undefined') return;
+      if (typeof color === 'undefined' || selection.indexOf(color) === 1) return;
 
       if (signs[color]) {
         signs[color]?.push(Sign.ASTERISK);
@@ -368,7 +368,9 @@ export class TwoStageTest {
       equalGroup?.forEach((groupColor) => {
         if (typeof groupColor === 'undefined') return;
 
-        if (signs[groupColor]) {
+        const hasEqual = Boolean(signs[groupColor]?.includes(Sign.EQUAL));
+
+        if (signs[groupColor] && !hasEqual) {
           signs[groupColor]?.push(Sign.EQUAL);
 
           return;
@@ -479,8 +481,3 @@ export class TwoStageTest {
     return interpretationPairs;
   }
 }
-
-const test = new TwoStageTest([1, 4, 7, 3, 6, 5, 0, 2],
-  [4, 1, 3, 6, 5, 2, 7, 0]);
-
-console.log(test.anxietyLevelInterpretation);

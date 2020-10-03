@@ -1,9 +1,10 @@
 import { TwoStageTest } from '@/two-stage-test';
-import { fifthFixture } from './fixtures/two-stage-test/fifth-fixture';
 import { firstFixture } from './fixtures/two-stage-test/first-fixture';
-import { fourthFixture } from './fixtures/two-stage-test/fourth-fixture';
 import { secondFixture } from './fixtures/two-stage-test/second-fixture';
 import { thirdFixture } from './fixtures/two-stage-test/third-fixture';
+import { fourthFixture } from './fixtures/two-stage-test/fourth-fixture';
+import { fifthFixture } from './fixtures/two-stage-test/fifth-fixture';
+import { sixthFixture } from './fixtures/two-stage-test/sixth-fixture';
 
 describe('[Two stage] First fixture', () => {
   let test: TwoStageTest;
@@ -202,5 +203,45 @@ describe('[Two stage] Fifth fixture', () => {
 
   it('should return interpretation pairs correctly', () => {
     expect(test.interpretationPairs).toStrictEqual(fifthFixture.interpretationPairs);
+  });
+});
+
+describe('[Two stage] Sixth fixture', () => {
+  let test: TwoStageTest;
+
+  beforeEach(() => {
+    test = new TwoStageTest(...sixthFixture.selections);
+  });
+
+  it('should return anxiety levels correctly', () => {
+    expect(test.anxietyLevels).toStrictEqual(sixthFixture.anxietyLevels);
+  });
+
+  it('should return total anxiety level correctly', () => {
+    expect(test.totalAnxietyLevel).toStrictEqual(sixthFixture.totalAnxietyLevel);
+  });
+
+  it('should return emotional state correctly', () => {
+    expect(test.emotionalStates).toStrictEqual(sixthFixture.emotionalStates);
+  });
+
+  it('should return pairs correctly', () => {
+    expect(test.pairs).toStrictEqual(sixthFixture.pairs);
+  });
+
+  it('should return groups correctly', () => {
+    expect(test.groups).toStrictEqual(sixthFixture.groups);
+  });
+
+  it('should return signs correctly', () => {
+    expect(test.signs).toStrictEqual(sixthFixture.signs);
+  });
+
+  it('should return sign maps correctly', () => {
+    expect(test.signMaps).toStrictEqual(sixthFixture.signMaps);
+  });
+
+  it('should return interpretation pairs correctly', () => {
+    expect(test.interpretationPairs).toStrictEqual(sixthFixture.interpretationPairs);
   });
 });
