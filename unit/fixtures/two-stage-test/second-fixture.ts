@@ -52,7 +52,7 @@ const signs: [ColorMap<[Sign, Sign?]>, ColorMap<[Sign, Sign?]>] = [
   {
     5: [Sign.PLUS],
     // TODO: investigate what's wrong with this case (should be only plus)
-    7: [Sign.PLUS, Sign.ASTERISK],
+    7: [Sign.PLUS],
     2: [Sign.ASTERISK],
     3: [Sign.EQUAL],
     4: [Sign.EQUAL],
@@ -75,7 +75,7 @@ const signs: [ColorMap<[Sign, Sign?]>, ColorMap<[Sign, Sign?]>] = [
 const signMaps: [SignMap<MainColor[]>, SignMap<MainColor[]>] = [
   {
     [Sign.PLUS]: [5, 7],
-    [Sign.ASTERISK]: [7, 2],
+    [Sign.ASTERISK]: [2],
     [Sign.EQUAL]: [3, 4, 0, 6],
     [Sign.MINUS]: [1],
   },
@@ -90,7 +90,7 @@ const signMaps: [SignMap<MainColor[]>, SignMap<MainColor[]>] = [
 const interpretationPairs: [SignMap<FunctionKeys[]>, SignMap<FunctionKeys[]>] = [
   {
     [Sign.PLUS]: ['57'],
-    [Sign.ASTERISK]: ['72'],
+    [Sign.ASTERISK]: ['2'],
     [Sign.EQUAL]: ['34', '40', '06'],
     [Sign.MINUS]: ['1'],
   },
