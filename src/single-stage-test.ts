@@ -9,7 +9,7 @@ import { Translations } from './types/translations.interface';
 
 export class SingleStageTest {
     /** Single stage color selection */
-    colors: MainColor[];
+    readonly colors: MainColor[];
 
     constructor(colors: MainColor[]) {
       validateSelection(colors);
@@ -43,10 +43,8 @@ export class SingleStageTest {
       return interpretation;
     }
     
-    /**
-     * @returns Color pairs for each sign
-     */
-    getGroups(): SignMap<MainColor[]> {
+    /** @returns Color pairs for each sign */
+    private getGroups(): SignMap<MainColor[]> {
       const initalGroups: SignMap<MainColor[]> = {
         [Sign.PLUS]: [],
         [Sign.ASTERISK]: [],

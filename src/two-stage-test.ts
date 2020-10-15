@@ -20,25 +20,25 @@ interface PsychologicalStateResult {
 }
 
 export class TwoStageTest {
-  /** Test color selections */
+  /** Obtained color selections */
   readonly selections: [MainColor[], MainColor[]];
-  /** Color pairs that repeat in both selections */
+  /** Color pairs that occur in both selections */
   readonly pairs: [MainColor, MainColor][];
-  /** Color groups in each selection */
+  /** Luscher groups in each selection */
   readonly groups: [MainColor, MainColor?][][];
-  /** State of existing disturbance and compensation by color */
+  /** State of disturbance and compensation by color for each selection */
   readonly emotionalStates: [ColorMap<EmotionalState>, ColorMap<EmotionalState>] = [{}, {}];
-  /** State of anxiety level by color */
+  /** State of anxiety level by color for each selection */
   readonly anxietyLevels: [ColorMap<1 | 2 | 3>, ColorMap<1 | 2 | 3>] = [{}, {}];
   /** Total anxiety level for each selection */
   readonly totalAnxietyLevel: [number, number];
-  /** Interpretation for total anxiety level of second selection*/
+  /** Interpretation for total anxiety level of second selection */
   readonly anxietyLevelInterpretation: Translations<string>;
-  /** Sign for each color */
+  /** Signs for each color */
   readonly signs: [ColorMap<[Sign, Sign?]>, ColorMap<[Sign, Sign?]>] = [{}, {}];
   /** Colors for each sign */
   readonly signMaps: [SignMap<MainColor[]>, SignMap<MainColor[]>];
-  /** Final color pairs for interpretation */
+  /** Final color pairs used to get interpretation by sign for each selection */
   readonly interpretationPairs: [SignMap<FunctionKeys[]>, SignMap<FunctionKeys[]>];
 
   constructor(
