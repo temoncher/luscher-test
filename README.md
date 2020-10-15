@@ -74,18 +74,28 @@ const testInterpretation = await test.getInterpretation()
 ```
 #### Specific Data
 ```js
-const selections: [MainColor[], MainColor[]] = test.selections; // Obtained color selections
-const pairs: [MainColor, MainColor][] = test.pairs; // Color pairs that occur in both selections
-const groups: [MainColor, MainColor?][][] = test.groups; // Luscher groups in each selection 
-const emotionalStates: [ColorMap<EmotionalState>, ColorMap<EmotionalState>] = test.emotionalStates; // State of disturbance and compensation by color for each selection
-const anxietyLevels: [ColorMap<1 | 2 | 3>, ColorMap<1 | 2 | 3>] = test.anxietyLevels; // State of anxiety level by color for each selection
-const totalAnxietyLevel: [number, number] = test.totalAnxietyLevel; // Total anxiety level for each selection
-const anxietyLevelInterpretation: Translations<string> = test.anxietyLevelInterpretation; // Interpretation for total anxiety level of second selection
-const signs: [ColorMap<[Sign, Sign?]>, ColorMap<[Sign, Sign?]>] = test.signs; // Signs for each color
-const signMaps: [SignMap<MainColor[]>, SignMap<MainColor[]>] = test.signMaps; // Colors for each sign
-const interpretationPairs: [SignMap<FunctionKeys[]>, SignMap<FunctionKeys[]>] = test.interpretationPairs; // Final color pairs used to get interpretation by sign for each selection
+// Obtained color selections
+const selections: [MainColor[], MainColor[]] = test.selections; 
+// Color pairs that occur in both selections
+const pairs: [MainColor, MainColor][] = test.pairs; 
+// Luscher groups in each selection 
+const groups: [MainColor, MainColor?][][] = test.groups; 
+// State of disturbance and compensation by color for each selection
+const emotionalStates: [ColorMap<EmotionalState>, ColorMap<EmotionalState>] = test.emotionalStates; 
+// State of anxiety level by color for each selection
+const anxietyLevels: [ColorMap<1 | 2 | 3>, ColorMap<1 | 2 | 3>] = test.anxietyLevels; 
+// Total anxiety level for each selection
+const totalAnxietyLevel: [number, number] = test.totalAnxietyLevel; 
+// Interpretation for total anxiety level of second selection
+const anxietyLevelInterpretation: Translations<string> = test.anxietyLevelInterpretation; 
+// Signs for each color
+const signs: [ColorMap<[Sign, Sign?]>, ColorMap<[Sign, Sign?]>] = test.signs; 
+// Colors for each sign
+const signMaps: [SignMap<MainColor[]>, SignMap<MainColor[]>] = test.signMaps; 
+// Final color pairs used to get interpretation by sign for each selection
+const interpretationPairs: [SignMap<FunctionKeys[]>, SignMap<FunctionKeys[]>] = test.interpretationPairs; 
 ```
 
 ### Full Color Test
-In progress...
+Will be implemented in upcoming releases.
 
