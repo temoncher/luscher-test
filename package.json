@@ -12,7 +12,7 @@
     "unit": "jest",
     "unit:watch": "jest --watchAll",
     "updateLink": "npm run build && npm rm luscher-test -g && npm link",
-    "release": "np"
+    "release": "npm run build && np"
   },
   "devDependencies": {
     "@types/jest": "^26.0.13",
