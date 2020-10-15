@@ -3,6 +3,10 @@ import { Translations } from '@/types/translations.interface';
 import { Sign } from '@/types/enums/sign.enum';
 import { SignMap } from '@/types/sign-map.type';
 
+/**
+ * Getting interpretation from .json files using passed language
+ * @param lang Interpretation language
+ */
 export const getInterpretation = async (
   lang: keyof Translations<unknown> | 'multi',
 ): Promise<SignMap<Interpretation>> => {

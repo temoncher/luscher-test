@@ -1,3 +1,4 @@
+/** Hex codes for test colors */
 export enum ColorHex {
   BLUE = '#004983',
   GREEN = '#1D9772',

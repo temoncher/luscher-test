@@ -1,3 +1,4 @@
+/** Identificators of test colors */
 export enum MainColor {
     BLUE = 1,
     GREEN = 2,
