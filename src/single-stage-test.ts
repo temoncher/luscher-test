@@ -8,6 +8,7 @@ import { getInterpretation } from './helpers/get-interpretation';
 import { Translations } from './types/translations.interface';
 
 export class SingleStageTest {
+    /** Single stage color selection */
     colors: MainColor[];
 
     constructor(colors: MainColor[]) {
@@ -15,7 +16,10 @@ export class SingleStageTest {
 
       this.colors = colors;
     }
-
+    /**
+     * @param lang Interpretation language
+     * @returns Interpretation on chosen language
+     */
     async interpret(lang: keyof Translations<any> | 'multi' = 'multi'): Promise<InterpretationSection[]> {
       const multiInterpretations = await getInterpretation(lang);
       const colorGroups = this.getGroups();
@@ -38,7 +42,10 @@ export class SingleStageTest {
 
       return interpretation;
     }
-
+    
+    /**
+     * @returns Color pairs for each sign
+     */
     getGroups(): SignMap<MainColor[]> {
       const initalGroups: SignMap<MainColor[]> = {
         [Sign.PLUS]: [],

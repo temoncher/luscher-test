@@ -20,15 +20,25 @@ interface PsychologicalStateResult {
 }
 
 export class TwoStageTest {
+  /** Test color selections */
   readonly selections: [MainColor[], MainColor[]];
+  /** Color pairs that repeat in both selections */
   readonly pairs: [MainColor, MainColor][];
+  /** Color groups in each selection */
   readonly groups: [MainColor, MainColor?][][];
+  /** State of existing disturbance and compensation by color */
   readonly emotionalStates: [ColorMap<EmotionalState>, ColorMap<EmotionalState>] = [{}, {}];
+  /** State of anxiety level by color */
   readonly anxietyLevels: [ColorMap<1 | 2 | 3>, ColorMap<1 | 2 | 3>] = [{}, {}];
+  /** Total anxiety level for each selection */
   readonly totalAnxietyLevel: [number, number];
+  /** Interpretation for total anxiety level of second selection*/
   readonly anxietyLevelInterpretation: Translations<string>;
+  /** Sign for each color */
   readonly signs: [ColorMap<[Sign, Sign?]>, ColorMap<[Sign, Sign?]>] = [{}, {}];
+  /** Colors for each sign */
   readonly signMaps: [SignMap<MainColor[]>, SignMap<MainColor[]>];
+  /** Final color pairs for interpretation */
   readonly interpretationPairs: [SignMap<FunctionKeys[]>, SignMap<FunctionKeys[]>];
 
   constructor(
@@ -58,6 +68,10 @@ export class TwoStageTest {
     this.interpretationPairs = this.getInterpretationPairs();
   }
 
+  /**
+   * @param lang Interpretation language
+   * @returns Interpretation on chosen language
+   */
   async getInterpretation(lang: InterpretationLanguage | 'multi' = InterpretationLanguage.ENGLISH): Promise<[
     InterpretationSection[],
     InterpretationSection[]
