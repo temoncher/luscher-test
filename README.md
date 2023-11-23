@@ -63,14 +63,17 @@ The interpretation is based on both choices.
 import { TwoStageTest } from 'luscher-test'
 
 // color codes in order of their selection
-const firstSelection = [2, 6, 3, 1, 0, 6, 7, 4];
+const firstSelection = [2, 6, 3, 1, 0, 5, 7, 4];
 const secondSelection = [5, 7, 3, 1, 0, 4, 2, 6];
 
 const test = new TwoStageTest(firstSelection, secondSelection);
 
 // two stage test interpretation 
 // getInterpretation() returns Promise with test interpretation
-const testInterpretation = await test.getInterpretation() 
+async function someAsyncFunction() {
+  const testInterpretation = await test.getInterpretation() 
+  // ...
+}
 ```
 #### Specific Data
 ```js
